@@ -10,29 +10,32 @@
 
     <title>AngularJS Client Application</title>
 
-    <!-- deps -->
+    <!-- Styles -->
     <link rel="stylesheet" href="bower_cache/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_cache/bootstrap/dist/css/bootstrap-theme.css">
-
-    <!-- app -->
-    <link rel="stylesheet" href="app/app.css">
-  </head>
-
-  <body ng-app="app">
-
-    <!-- where ui-router load the views -->
-    <div ui-view></div>
+    <link rel="stylesheet" href="bower_cache/videogular-themes-default/videogular.css">
+    <link rel="stylesheet" href="bower_cache/videogular-themes-default/fonts/videogular.ttf">
+    <link rel="stylesheet" href="bower_cache/videogular-themes-default/fonts/videogular.woff">
+    <link rel="stylesheet" href="app/styles/main.css">
 
     <!-- deps -->
     <script src="bower_cache/jquery/dist/jquery.js"></script>
     <script src="bower_cache/angular/angular.js"></script>
     <script src="bower_cache/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_cache/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_cache/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_cache/videogular/videogular.js"></script>
+    <script src="bower_cache/videogular-controls/vg-controls.min.js"></script>
 
     <!-- app -->
     <script src="app/app.js"></script>
-    <script src="app/main/main.js"></script>
-    <script src="app/main/main-controller.js"></script>
-    <script src="app/about/about.js"></script>
+    <script src="app/urls.js"></script>
+    <script src="app/common/controllers/mainControl.js"></script>
+  </head>
+
+  <body ng-app="blogcast">
+
+    <!-- where ui-router load the views -->
+    <div ui-view></div>
   </body>
 </html>

@@ -2,3 +2,5 @@ web:
     build: .
     ports:
         - "9000:8000"
+    volumes:
+        - .:/code
