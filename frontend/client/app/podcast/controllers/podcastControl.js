@@ -1,6 +1,6 @@
 angular.module('blogcast')
 
-    .controller('MainCtrl', ['$scope', "$sce", "$timeout", function ($scope, $sce, $timeout) {
+    .controller('PodcastCtrl', ['$scope', "$sce", "$timeout", function ($scope, $sce, $timeout) {
         $scope.playlist = [
             {
                     source: "https://s3.amazonaws.com/noscorepodcastaudio/Dark+Souls+3+DLC+OST+-+Sister+Friede.mp3",
@@ -21,6 +21,10 @@ angular.module('blogcast')
                     image: null
             }
         ];
+
+        angular.element(document).ready(function() {
+            $scope.playerElement = document.getElementById("audioApp");
+        });
 
         $scope.setMedia = function(item) {
             angular.element($scope.playerElement).scope().setMedia(item, true);

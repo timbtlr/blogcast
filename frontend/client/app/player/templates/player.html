@@ -1,5 +1,12 @@
 <div class="container">
   <div class="videogular-container audio">
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="col-xs-4">
+            <span><strong>Now Playing: {{currentlyPlaying.title}}</strong></span>
+          </div>
+      </div>
+    </div>
     <videogular vg-player-ready="onPlayerReady($API)" vg-theme="config.theme.url" vg-auto-play="config.autoPlay" vg-complete="onCompleteVideo()">
       <vg-media vg-src="config.sources">
       </vg-media>
@@ -13,7 +20,6 @@
           <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
           <vg-volume>
               <vg-mute-button></vg-mute-button>
-              <vg-volume-bar></vg-volume-bar>
           </vg-volume>
       </vg-controls>
     </videogular>

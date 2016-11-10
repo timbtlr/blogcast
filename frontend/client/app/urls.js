@@ -2,18 +2,18 @@ angular.module('blogcast')
     .config(['$stateProvider', function ($stateProvider) {
         'use strict';
 
-        $stateProvider.state('main',
+        $stateProvider.state('podcast',
             {
                 url: '/',
-                templateUrl: 'app/common/templates/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'app/podcast/templates/podcast.html',
+                controller: 'PodcastCtrl'
             }
         );
 
-        $stateProvider.state('about',
+        $stateProvider.state('blog',
             {
                 url: '/about',
-                templateUrl: 'app/about/about.html'
+                templateUrl: 'app/blog/templates/blog.html'
             }
         );
     }]);

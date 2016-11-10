@@ -37,11 +37,13 @@ angular
     .controller("audioCtrl", ['$scope', "$sce", "$timeout", '$window', function($scope, $sce, $timeout, $window) {
         $scope.API = null;
         $scope.initialized = false;
+        $scope.currentlyPlaying = null;
 
         $scope.setMedia = function(item, autoplay){
             $scope.$apply(function() {
                 $scope.API.stop();
                 $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}];
+                $scope.currentlyPlaying = item;
                 if (autoplay) {
                     $timeout($scope.API.play.bind($scope.API), 100);
                 };
@@ -52,6 +54,7 @@ angular
             $scope.$apply(function() {
                 if (!$scope.initialized) {
                     $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}];
+                    $scope.currentlyPlaying = item;
                     $scope.initialized = true;
                 };
             });
@@ -62,6 +65,7 @@ angular
         };
 
         $scope.config = {
+            type: "audio",
             sources: [],
             theme: {
                 url: "bower_cache/videogular-themes-default/videogular.css"
