@@ -22,11 +22,6 @@ angular.module('blogcast')
             }
         ];
 
-        angular.element(document).ready(function() {
-            $scope.playerElement = document.getElementById("audioApp");
-            angular.element($scope.playerElement).scope().initializeMedia($scope.playlist[0]);
-        });
-
         $scope.setMedia = function(item) {
             angular.element($scope.playerElement).scope().setMedia(item, true);
         };

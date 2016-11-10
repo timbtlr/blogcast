@@ -7,12 +7,21 @@ angular
         "com.2fdevs.videogular",
         "com.2fdevs.videogular.plugins.controls"
     ])
-    .config(['$urlRouterProvider', '$locationProvider',
-        function ($urlRouterProvider, $locationProvider) {
+    .config(['$urlRouterProvider', '$locationProvider', function ($urlRouterProvider, $locationProvider) {
         'use strict';
 
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
+
+        angular.element(document).ready(function() {
+            angular.element(document.getElementById("audioApp")).scope().initializeMedia({
+                source: "https://s3.amazonaws.com/noscorepodcastaudio/Dark+Souls+3+DLC+OST+-+Sister+Friede.mp3",
+                title: "Sister Friede Main Theme",
+                description: "Optional boss OST from Dark Souls III DLC.",
+                image: null
+            });
+        });
+
     }]);
 
 
