@@ -33,9 +33,13 @@
     <script src="app/common/controllers/mainControl.js"></script>
   </head>
 
-  <body ng-app="blogcast">
+  <body>
+    <div ng-app="blogcast">
+        <div ui-view></div>
+    </div>
 
-    <!-- where ui-router load the views -->
-    <div ui-view></div>
+    <div id="audioApp" ng-controller="audioCtrl">
+        <div ng-include="'app/player/templates/player.html'"></div>
+    </div>
   </body>
 </html>

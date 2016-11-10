@@ -1,4 +1,4 @@
-<div ng-include="navbar/navbar.html"></div>
+<div ng-include="'app/navbar/templates/navbar.html'"></div>
 
 <div class="container">
   <div class="row" ng-repeat="item in playlist" ng-click="setMedia(item)">
@@ -8,30 +8,5 @@
             <p class="playlist-store">{{item.description}}</p>
           </div>
       </div>
-  </div>
-
-  <div style="height: 100000px">
-
-  </div>
-
-  <div class="videogular-container audio">
-    <videogular vg-player-ready="onPlayerReady($API)" vg-theme="config.theme.url" vg-auto-play="config.autoPlay" vg-complete="onCompleteVideo()">
-      <vg-media vg-src="config.sources">
-      </vg-media>
-
-      <vg-controls>
-          <vg-play-pause-button></vg-play-pause-button>
-          <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
-          <vg-scrub-bar>
-              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-          </vg-scrub-bar>
-          <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
-          <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
-          <vg-volume>
-              <vg-mute-button></vg-mute-button>
-              <vg-volume-bar></vg-volume-bar>
-          </vg-volume>
-      </vg-controls>
-    </videogular>
   </div>
 </div>

@@ -1,6 +1,4 @@
 angular.module('blogcast')
-
-    // URL Routing
     .config(['$stateProvider', function ($stateProvider) {
         'use strict';
 

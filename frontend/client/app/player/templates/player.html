@@ -1,4 +1,21 @@
-<videogular>
-  <vg-media vg-src="controller.config.sources" vg-tracks="controller.config.tracks" vg-native-controls="true">
-  </vg-media>
-</videogular>
+<div class="container">
+  <div class="videogular-container audio">
+    <videogular vg-player-ready="onPlayerReady($API)" vg-theme="config.theme.url" vg-auto-play="config.autoPlay" vg-complete="onCompleteVideo()">
+      <vg-media vg-src="config.sources">
+      </vg-media>
+
+      <vg-controls>
+          <vg-play-pause-button></vg-play-pause-button>
+          <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+          <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          </vg-scrub-bar>
+          <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+          <vg-volume>
+              <vg-mute-button></vg-mute-button>
+              <vg-volume-bar></vg-volume-bar>
+          </vg-volume>
+      </vg-controls>
+    </videogular>
+  </div>
+</div>

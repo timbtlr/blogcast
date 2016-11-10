@@ -22,41 +22,12 @@ angular.module('blogcast')
             }
         ];
 
-        $scope.API = null;
-
-        $scope.onPlayerReady = function(API) {
-            $scope.API = API;
-            $scope.currentVideo = 0;
-            $scope.config.sources = [{src: $sce.trustAsResourceUrl($scope.playlist[$scope.currentVideo].source), type: "audio/mpeg"}];
-        };
-
-        $scope.onCompleteVideo = function() {
-                $scope.isCompleted = true;
-                $scope.currentVideo ++;
-
-                if ($scope.currentVideo >= $scope.playlist.length) {
-                    $scope.currentVideo = 0;
-                };
-
-                $scope.setMedia($scope.playlist[$scope.currentVideo]);
-            };
+        angular.element(document).ready(function() {
+            $scope.playerElement = document.getElementById("audioApp");
+            angular.element($scope.playerElement).scope().initializeMedia($scope.playlist[0]);
+        });
 
         $scope.setMedia = function(item) {
-            $scope.currentVideo = $scope.playlist.indexOf(item)
-            console.log($scope.currentVideo)
-            $scope.API.stop();
-            $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}];
-            $timeout($scope.API.play.bind($scope.API), 100);
-        };
-
-        $scope.config = {
-            sources: [],
-            theme: {
-                url: "bower_cache/videogular-themes-default/videogular.css"
-            },
-            preload: "none",
-            autoHide: false,
-            autoHideTime: 3000,
-            autoPlay: false
+            angular.element($scope.playerElement).scope().setMedia(item, true);
         };
     }]);
