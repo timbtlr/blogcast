@@ -1,9 +1,12 @@
 <div class="container">
   <div class="videogular-container audio">
-    <div class="row">
+    <div class="row now-playing">
       <div class="col-xs-12">
-          <div class="col-xs-4">
-            <span><strong>Now Playing: {{currentlyPlaying.title}}</strong></span>
+          <div class="col-xs-1">
+            <img class="audio-player-image" ng-src="{{currentlyPlaying.image}}"></img>
+          </div>
+          <div class="col-xs-4 audio-player-title">
+            <span><strong>Now Playing:</strong> {{currentlyPlaying.title}}</span>
           </div>
       </div>
     </div>

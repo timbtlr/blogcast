@@ -1,10 +1,16 @@
 <div class="container">
   <div class="row" ng-repeat="item in playlist" ng-click="setMedia(item)">
       <div class="playlist-item">
-          <div class="col-xs-12 playlist-block">
-            <p class="playlist-store"><strong>{{item.title}}</strong></p>
-            <p class="playlist-store">{{item.description}}</p>
+          <div class="col-xs-12 playlist-block" ng-style="item.playing ? {'background-color': '#ffebe6'} : {'background-color': 'white'}">
+            <div class="col-xs-10" class="playlist-content">
+                <p class="playlist-store"><strong>{{item.title}}</strong></p>
+                <p class="playlist-store">{{item.description}}</p>
+            </div>
+            <span class="col-xs-2" align="right">
+                <img ng-show="item.playing" class="playlist-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/80779-200.png"></img>
+            </span>
           </div>
       </div>
   </div>
 </div>
+

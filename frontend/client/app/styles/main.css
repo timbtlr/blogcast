@@ -34,6 +34,7 @@ body {
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 1000;
 }
 
 .videogular-container .skipButton {
@@ -63,6 +64,17 @@ body {
     height: 50px;
 }
 
+.now-playing {
+    width: 100%;
+    margin: auto;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    bottom: 50px;
+}
+
 .playlist-item {
     padding: 2px;
     width: 70%;
@@ -76,6 +88,26 @@ body {
     cursor: pointer;
 }
 
-.playlist-content .playlist-store {
-    font-size: 25px;
+.playlist-content {
+    text-align: left;
+    width: 500px;
+}
+
+.audio-player-image {
+    position: relative;
+    left: -30px;
+    height: 50px;
+    width: 50px;
+}
+
+.audio-player-title {
+    position: relative;
+    left: -60px;
+    bottom: -15px;
+}
+
+.playlist-icon {
+    position: relative;
+    height: 60px;
+    width: 60px;
 }
