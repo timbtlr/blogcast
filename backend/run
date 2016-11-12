@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+envtpl --keep-template --allow-missing -o /code/uwsgi.ini  /code/uwsgi.ini.tpl
+
+if [[ -n ${AUTO_MIGRATE} ]]; then
+    echo "Auto-migrate is enabled."
+    sleep 5
+    python app/manage.py migrate
+fi
+
+exec uwsgi --ini /code/uwsgi.ini

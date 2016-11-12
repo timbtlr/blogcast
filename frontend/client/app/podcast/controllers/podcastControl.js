@@ -7,7 +7,6 @@ angular.module('blogcast')
                 source: "https://s3.amazonaws.com/noscorepodcastaudio/Dark+Souls+3+DLC+OST+-+Sister+Friede.mp3",
                 title: "Sister Friede Main Theme",
                 description: "Optional boss OST from Dark Souls III DLC.",
-                image: "http://vignette4.wikia.nocookie.net/finalfantasy/images/1/11/FFXIII_Logo_Art.jpg/revision/latest?cb=20120806172920"
             },
             {
                 id: "2",
@@ -21,7 +20,7 @@ angular.module('blogcast')
                 source: "https://s3.amazonaws.com/noscorepodcastaudio/Final+Fantasy+VIII+Ultimecia+Final+Boss+Theme+(The+Extreme).mp3",
                 title: "Final Fantasy XIII Final Boss Theme",
                 description: "Final boss fight extended edition.",
-                image: null
+                image: "http://vignette4.wikia.nocookie.net/finalfantasy/images/1/11/FFXIII_Logo_Art.jpg/revision/latest?cb=20120806172920"
             }
         ];
 

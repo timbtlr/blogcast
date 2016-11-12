@@ -4,3 +4,7 @@ api:
         - "8000:80"
     environment:
         - SECRET_KEY=foo
+        - DATABASE_URL=postgres://skjhkbnpqoauwh:qfa2q_tcOiKSnHdVOOQ50_AY_c@ec2-54-83-17-9.compute-1.amazonaws.com:5432/dcc9p47rhpe2m2
+        - DEBUG=true
+    volumes:
+        - .:/code

@@ -3,6 +3,7 @@ import os
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +29,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
+    'corsheaders',
+    'app.podcast'
 )
 
 MIDDLEWARE_CLASSES = (
