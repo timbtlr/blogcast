@@ -22,6 +22,7 @@
     "videogular": "latest",
     "angular-sanitize": "latest",
     "videogular-controls": "latest",
-    "videogular-themes-default": "latest"
+    "videogular-themes-default": "latest",
+    "underscore": "1.8.3"
   }
 }
