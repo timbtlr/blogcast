@@ -1,7 +1,7 @@
 [uwsgi]
 master = true
 processes = 4
-http  = :80
+http = :$(PORT)
 module = app.config.wsgi
 enable-threads = true
 single-interpreter = true
