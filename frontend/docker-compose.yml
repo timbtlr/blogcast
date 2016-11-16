@@ -4,3 +4,5 @@ web:
         - "9000:8000"
     volumes:
         - .:/code
+    environment:
+        - BLOGCAST_URL=http://two-beers-deep-api.herokuapp.com/

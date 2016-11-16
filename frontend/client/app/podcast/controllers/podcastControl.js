@@ -1,34 +1,16 @@
 angular.module('blogcast')
+    .controller('PodcastCtrl', ['$scope', "$sce", "$timeout", "AudioService", "Episode", function ($scope, $sce, $timeout, AudioService, Episode) {
+        Episode.query().$promise.then(function(data) {
+             $scope.playlist = data.data;
+             console.log(data)
+             $scope.setMedia(data.data[0], false);
+        });
 
-    .controller('PodcastCtrl', ['$scope', "$sce", "$timeout", "AudioService", function ($scope, $sce, $timeout, AudioService) {
-        $scope.playlist = [
-            {
-                id: "1",
-                source: "https://s3.amazonaws.com/noscorepodcastaudio/Dark+Souls+3+DLC+OST+-+Sister+Friede.mp3",
-                title: "Sister Friede Main Theme",
-                description: "Optional boss OST from Dark Souls III DLC.",
-            },
-            {
-                id: "2",
-                source: "https://s3.amazonaws.com/noscorepodcastaudio/Final+Battle+-+Final+Fantasy+IX+Music+Extended.mp3",
-                title: "Final Fantasy IX Final Boss Theme",
-                description: "Final boss fight extended edition.",
-                image: null
-            },
-            {
-                id: "3",
-                source: "https://s3.amazonaws.com/noscorepodcastaudio/Final+Fantasy+VIII+Ultimecia+Final+Boss+Theme+(The+Extreme).mp3",
-                title: "Final Fantasy XIII Final Boss Theme",
-                description: "Final boss fight extended edition.",
-                image: "http://vignette4.wikia.nocookie.net/finalfantasy/images/1/11/FFXIII_Logo_Art.jpg/revision/latest?cb=20120806172920"
-            }
-        ];
-
-        $scope.setMedia = function(item) {
+        $scope.setMedia = function(item, autoPlay) {
             if ($scope.currentlyPlaying != null) {
                 $scope.currentlyPlaying.playing = false;
             };
-            angular.element($scope.playerElement).scope().setMedia(item, true);
+            angular.element($scope.playerElement).scope().setMedia(item, autoPlay);
             $scope.currentlyPlaying = item;
             item.playing = true;
             AudioService.setCurrentlyPlaying(item);
@@ -40,14 +22,6 @@ angular.module('blogcast')
                 return item.id == AudioService.getCurrentlyPlaying().id
             });
         };
-
-        if (playingItem != undefined) {
-            $scope.currentlyPlaying = playingItem;
-        } else{
-            $scope.currentlyPlaying = $scope.playlist[0];
-        };
-
-        $scope.currentlyPlaying.playing = true;
 
         angular.element(document).ready(function() {
             $scope.playerElement = document.getElementById("audioApp");

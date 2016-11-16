@@ -21,10 +21,12 @@ angular
     .module('blogcast', [
         'ui.bootstrap',
         'ui.router',
+        'envConfig',
         "ngSanitize",
         "com.2fdevs.videogular",
         "com.2fdevs.videogular.plugins.controls",
-        "sharedAudioService"
+        "sharedAudioService",
+        "PodcastService"
     ])
     .config(['$urlRouterProvider', '$locationProvider', function ($urlRouterProvider, $locationProvider) {
         'use strict';

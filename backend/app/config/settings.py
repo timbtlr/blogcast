@@ -22,6 +22,21 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'app.common.renderers.SiteJsonRenderer',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication'
+    ),
+    'DATETIME_FORMAT': None,
+    'DATE_FORMAT': None,
+    'TIME_FORMAT': None
+}
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
