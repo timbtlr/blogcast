@@ -8,13 +8,8 @@ ADD bower.json /code/bower.json
 # Set in what directory commands will run
 WORKDIR /code/
 
-# Move our installation dependency files to the directory where installation will run
-
 # Put all our code inside that directory that lives in the container
 ADD . /code
-
-RUN useradd builder
-RUN chown -R builder:builder /code
 
 # Install dependencies
 RUN     npm install --global nodemon
@@ -22,11 +17,12 @@ RUN     npm install -g bower
 RUN     npm install -g grunt-cli
 RUN     npm install
 RUN     bower install --config.interactive=false --allow-root
-
 RUN     grunt
 
 EXPOSE 8000
 
-# The command to run our app when the container is run
+ADD run /usr/local/bin/run
+RUN chmod +x /usr/local/bin/run
 
-CMD ["nodemon", "server/app.js"]
+# The command to run our app when the container is run
+CMD /usr/local/bin/run

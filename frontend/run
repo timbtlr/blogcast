@@ -1,0 +1,5 @@
+set -e
+
+grunt
+
+exec nodemon server/app.js
