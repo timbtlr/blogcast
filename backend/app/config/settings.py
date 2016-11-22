@@ -114,4 +114,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LEAGUE_API_KEY = os.environ.get("LEAGUE_API_KEY")
+API_TOKEN = os.environ.get("API_TOKEN")

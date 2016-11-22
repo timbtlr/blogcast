@@ -7,5 +7,6 @@ api:
         - DATABASE_URL=postgres://skjhkbnpqoauwh:qfa2q_tcOiKSnHdVOOQ50_AY_c@ec2-54-83-17-9.compute-1.amazonaws.com:5432/dcc9p47rhpe2m2
         - DEBUG=true
         - PORT=49758
+        - API_TOKEN=foo
     volumes:
         - .:/code
