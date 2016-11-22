@@ -1,7 +1,7 @@
 # Project specific
 node_modules
 bower_cache
-envConfig.js
+*envConfig*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
