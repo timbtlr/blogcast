@@ -63,11 +63,14 @@ angular
 
         $scope.setMedia = function(item, autoplay){
             $scope.$apply(function() {
-                $scope.API.stop();
                 $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}];
                 $scope.currentlyPlaying = item;
-                if (autoplay) {
-                    $timeout($scope.API.play.bind($scope.API), 100);
+
+                if ($scope.API  != null) {
+                    $scope.API.stop();
+                     if (autoplay) {
+                        $timeout($scope.API.play.bind($scope.API), 100);
+                    };
                 };
             });
         };

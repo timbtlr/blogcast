@@ -6,11 +6,15 @@ angular.module('PodcastService', ['ngResource'])
             {
                 'query': {
                     method: 'GET',
-                    isArray: false
+                    isArray: false,
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Authorization': ENV.blogcastApiKey
+                    }
                 }
             },
             {
-                stripTrailingSlashes: false 
+                stripTrailingSlashes: false
             }
         );
     });
