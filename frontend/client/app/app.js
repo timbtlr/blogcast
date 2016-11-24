@@ -14,8 +14,6 @@ angular
         };
     });
 
-
-
 // "blogcast" application.  Main navigation and content of the page.  Controls the audio player application.
 angular
     .module('blogcast', [
@@ -25,6 +23,7 @@ angular
         "ngSanitize",
         "com.2fdevs.videogular",
         "com.2fdevs.videogular.plugins.controls",
+        "ngFileUpload",
         "sharedAudioService",
         "PodcastService"
     ])
@@ -33,18 +32,6 @@ angular
 
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
-
-        angular.element(document).ready(function() {
-            var initialAudio = {
-                id: "1",
-                source: "https://s3.amazonaws.com/noscorepodcastaudio/Dark+Souls+3+DLC+OST+-+Sister+Friede.mp3",
-                title: "Sister Friede Main Theme",
-                description: "Optional boss OST from Dark Souls III DLC.",
-                image: null
-            }
-            angular.element(document.getElementById("audioApp")).scope().initializeMedia(initialAudio);
-        });
-
     }]);
 
 

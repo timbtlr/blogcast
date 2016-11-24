@@ -16,4 +16,12 @@ angular.module('blogcast')
                 templateUrl: 'app/blog/templates/blog.html'
             }
         );
+
+        $stateProvider.state('admin',
+            {
+                url: '/admin',
+                templateUrl: 'app/admin/templates/uploadEpisode.html',
+                controller: 'EpisodeUploadCtrl'
+            }
+        );
     }]);
