@@ -25,10 +25,11 @@ angular
         "com.2fdevs.videogular.plugins.controls",
         "ngFileUpload",
         "hc.marked",
+        "LocalStorageModule",
         "sharedAudioService",
         "PodcastService"
     ])
-    .config(['$urlRouterProvider', '$locationProvider', 'markedProvider', function ($urlRouterProvider, $locationProvider, markedProvider) {
+    .config(['$urlRouterProvider', '$locationProvider', 'markedProvider', 'localStorageServiceProvider', function ($urlRouterProvider, $locationProvider, markedProvider, localStorageServiceProvider) {
         'use strict';
 
         $locationProvider.html5Mode(true);
@@ -41,6 +42,10 @@ angular
                 return "<a href='" + href + "'" + (title ? " title='" + title + "'" : '') + " target='_blank'>" + text + "</a>";
             }
         });
+
+        // Local storage options
+        localStorageServiceProvider
+            .setPrefix('blogcast')
     }]);
 
 

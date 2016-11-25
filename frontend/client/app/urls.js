@@ -17,6 +17,14 @@ angular.module('blogcast')
             }
         );
 
+        $stateProvider.state('login',
+            {
+                url: '/login',
+                templateUrl: 'app/login/templates/login.html',
+                controller: 'LoginCtrl'
+            }
+        );
+
         $stateProvider.state('admin',
             {
                 url: '/admin',

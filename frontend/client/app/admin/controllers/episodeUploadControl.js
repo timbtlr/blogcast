@@ -1,12 +1,13 @@
 angular.module('blogcast')
-    .controller('EpisodeUploadCtrl', ['$scope', 'ENV', 'Episode', 'Upload', 'EpisodeUploadService', function ($scope, ENV, Episode, Upload, EpisodeUploadService) {
+    .controller('EpisodeUploadCtrl', ['$scope', 'ENV', 'Episode', 'Upload', 'EpisodeUploadService', 'localStorageService', function ($scope, ENV, Episode, Upload, EpisodeUploadService, localStorageService) {
+        var localStorageVarName = "adminPassword"
         $scope.uploading = false;
         $scope.logged_in = false;
 
         $scope.login = function (password) {
-            console.log(password)
             if (password == ENV.adminPassword) {
                 $scope.logged_in = true;
+                localStorageService.set(localStorageVarName, password);
             };
         };
 
@@ -41,5 +42,11 @@ angular.module('blogcast')
 
         $scope.readyForUpload = function() {
             return $scope.file && $scope.episodeTitle != undefined && $scope.episodeDescription != undefined && $scope.episodeThumbnailImage != undefined;
+        };
+
+        // Login the user if their local storage contains the correct password already
+        existingAdminPassword = localStorageService.get(localStorageVarName);
+        if (existingAdminPassword == ENV.adminPassword) {
+            $scope.logged_in = true;
         };
     }]);

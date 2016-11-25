@@ -31,7 +31,8 @@ module.exports = function(grunt) {
                         blogcastApiKey: process.env.BLOGCAST_KEY,
                         awsAccessKey: process.env.AWS_ACCESS_KEY,
                         awsSecretKey: process.env.AWS_SECRET_KEY,
-                        awsBucketName: process.env.AWS_BUCKET_NAME
+                        awsBucketName: process.env.AWS_BUCKET_NAME,
+                        loginPassphrase: process.env.LOGIN_PASSPHRASE,
                     }
                 }
             }

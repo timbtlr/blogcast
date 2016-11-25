@@ -1,7 +1,9 @@
-<div class="collapse navbar-collapse">
+<div class="collapse navbar-collapse" ng-controller="NavCtrl">
     <ul class="nav navbar-nav navbar-right">
         <li ng-class="{active: $state.is('podcast')}"><a ui-sref="podcast">Main</a></li>
         <li ng-class="{active: $state.is('blog')}"><a ui-sref="blog">Blog</a></li>
-        <li ng-class="{active: $state.is('admin')}"><a ui-sref="admin">Admin</a></li>
+        <li ng-class="{active: $state.is('admin')}" ng-show="logged_in"><a ui-sref="admin">Admin</a></li>
+        <li ng-class="{active: $state.is('login')}" ng-show="!logged_in"><a ui-sref="login">Login</a></li>
+        <li ng-class="{active: $state.is('login')}" ng-show="logged_in" ng-click="logout()"><a>Logout</a></li>
     </ul>
 </div>
