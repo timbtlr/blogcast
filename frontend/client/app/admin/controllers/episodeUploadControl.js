@@ -1,15 +1,12 @@
 angular.module('blogcast')
-    .controller('EpisodeUploadCtrl', ['$scope', 'ENV', 'Episode', 'Upload', 'EpisodeUploadService', 'localStorageService', function ($scope, ENV, Episode, Upload, EpisodeUploadService, localStorageService) {
+    .controller('EpisodeUploadCtrl', ['$scope', '$state', 'ENV', 'Episode', 'Upload', 'EpisodeUploadService', 'localStorageService', 'LoginManager', function ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, localStorageService, LoginManager) {
         var localStorageVarName = "adminPassword"
         $scope.uploading = false;
-        $scope.logged_in = false;
+        $scope.logged_in = LoginManager.checkLogin();
 
-        $scope.login = function (password) {
-            if (password == ENV.adminPassword) {
-                $scope.logged_in = true;
-                localStorageService.set(localStorageVarName, password);
-            };
-        };
+        if (!$scope.logged_in) {
+            $state.go("podcast")
+        }
 
         $scope.selectFile = function (file) {
             $scope.file = file;

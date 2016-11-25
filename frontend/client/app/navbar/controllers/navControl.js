@@ -5,6 +5,8 @@ angular.module('blogcast')
         $scope.logout = function() {
             LoginManager.logout();
             $scope.logged_in = false;
+            // Reload the current state to ensure login-only states are left
+            $state.go($state.current.name, {}, {reload:true});
         };
 
         $scope.$watch(
@@ -12,7 +14,6 @@ angular.module('blogcast')
                 return LoginManager.checkLogin();
             },
             function( newValue ) {
-                console.log(newValue);
                 $scope.logged_in = newValue;
             }
         );
