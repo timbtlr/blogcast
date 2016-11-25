@@ -24,14 +24,23 @@ angular
         "com.2fdevs.videogular",
         "com.2fdevs.videogular.plugins.controls",
         "ngFileUpload",
+        "hc.marked",
         "sharedAudioService",
         "PodcastService"
     ])
-    .config(['$urlRouterProvider', '$locationProvider', function ($urlRouterProvider, $locationProvider) {
+    .config(['$urlRouterProvider', '$locationProvider', 'markedProvider', function ($urlRouterProvider, $locationProvider, markedProvider) {
         'use strict';
 
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
+
+        // Force markdown links to be opened in a new tab by default
+        markedProvider.setOptions({gfm: true});
+        markedProvider.setRenderer({
+            link: function(href, title, text) {
+                return "<a href='" + href + "'" + (title ? " title='" + title + "'" : '') + " target='_blank'>" + text + "</a>";
+            }
+        });
     }]);
 
 

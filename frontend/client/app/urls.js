@@ -12,7 +12,7 @@ angular.module('blogcast')
 
         $stateProvider.state('blog',
             {
-                url: '/about',
+                url: '/blog',
                 templateUrl: 'app/blog/templates/blog.html'
             }
         );
