@@ -13,7 +13,16 @@ angular.module('blogcast')
         $stateProvider.state('blog',
             {
                 url: '/blog',
-                templateUrl: 'app/blog/templates/blog.html'
+                templateUrl: 'app/blog/templates/blog.html',
+                controller: 'BlogCtrl'
+            }
+        );
+
+        $stateProvider.state('write',
+            {
+                url: '/write',
+                templateUrl: 'app/write/templates/writeBlog.html',
+                controller: 'WriteBlogCtrl'
             }
         );
 
@@ -25,10 +34,10 @@ angular.module('blogcast')
             }
         );
 
-        $stateProvider.state('admin',
+        $stateProvider.state('upload',
             {
-                url: '/admin',
-                templateUrl: 'app/admin/templates/uploadEpisode.html',
+                url: '/upload',
+                templateUrl: 'app/upload/templates/uploadEpisode.html',
                 controller: 'EpisodeUploadCtrl'
             }
         );

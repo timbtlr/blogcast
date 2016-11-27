@@ -111,3 +111,9 @@ body {
     height: 60px;
     width: 60px;
 }
+
+
+.post-list-item {
+    padding: 2px;
+    margin: auto;
+}
