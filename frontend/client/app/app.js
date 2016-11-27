@@ -27,7 +27,8 @@ angular
         "hc.marked",
         "LocalStorageModule",
         "sharedAudioService",
-        "PodcastService"
+        "PodcastService",
+        "BlogService"
     ])
     .config(['$urlRouterProvider', '$locationProvider', 'markedProvider', 'localStorageServiceProvider', function ($urlRouterProvider, $locationProvider, markedProvider, localStorageServiceProvider) {
         'use strict';
