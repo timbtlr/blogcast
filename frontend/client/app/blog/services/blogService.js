@@ -1,23 +1,30 @@
 angular.module('BlogService', ['ngResource'])
     .factory('Post', function($resource, ENV) {
+        var headerDict = {
+            'Content-Type':'application/json',
+            'Authorization': ENV.blogcastApiKey
+        };
+
         return $resource(
-            ENV.blogcastApiUrl.concat('blogs/:id'),
+            ENV.blogcastApiUrl.concat('blogs/:id/'),
             {},
             {
                 'query': {
                     method: 'GET',
                     isArray: false,
-                    headers:{
-                        'Content-Type':'application/json',
-                        'Authorization': ENV.blogcastApiKey
-                    }
+                    headers: headerDict
                 },
                 'create': {
                     method: 'POST',
-                    headers:{
-                        'Content-Type':'application/json',
-                        'Authorization': ENV.blogcastApiKey
-                    }
+                    headers: headerDict
+                },
+                'update': {
+                    method: 'PUT',
+                    headers: headerDict
+                },
+                'delete': {
+                    method: 'DELETE',
+                    headers: headerDict
                 }
             },
             {

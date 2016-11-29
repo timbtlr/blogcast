@@ -8,4 +8,4 @@ class BlogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ("title", "description", "image", "author", "text", "uploaded_time")
+        fields = ("id", "title", "description", "image", "author", "text", "uploaded_time")
