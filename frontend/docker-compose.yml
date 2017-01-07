@@ -1,7 +1,9 @@
 web:
     build: .
+    command: "gulp"
     ports:
-        - "9000:8000"
+        - "3000:3000"
+        - "3001:3001"
     env_file: .env
     volumes:
         - .:/code

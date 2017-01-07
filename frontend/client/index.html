@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="blogcast">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible", content="IE=edge,chrome=1">
@@ -10,55 +10,24 @@
 
     <title>A Podcast and Blog</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="bower_cache/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_cache/bootstrap/dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="bower_cache/videogular-themes-default/videogular.css">
-    <link rel="stylesheet" href="bower_cache/videogular-themes-default/fonts/videogular.ttf">
-    <link rel="stylesheet" href="bower_cache/videogular-themes-default/fonts/videogular.woff">
-    <link rel="stylesheet" href="app/styles/main.css">
+    <!-- inject:css -->
 
-    <!-- deps -->
-    <script src="bower_cache/jquery/dist/jquery.js"></script>
-    <script src="bower_cache/angular/angular.js"></script>
-    <script src="bower_cache/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_cache/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_cache/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_cache/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_cache/videogular/videogular.js"></script>
-    <script src="bower_cache/videogular-controls/vg-controls.min.js"></script>
-    <script src="bower_cache/underscore/underscore-min.js"></script>
-    <script src="bower_cache/marked/lib/marked.js"></script>
-    <script src="bower_cache/angular-marked/dist/angular-marked.js"></script>
-    <script src="bower_cache/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <script src="bower_cache/crypto-js/crypto-js.js"></script>
-    <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
+    <!-- endinject -->
 
-    <!-- app -->
-    <script src="app/app.js"></script>
-    <script src="app/urls.js"></script>
-    <script src="app/blog/controllers/blogControl.js"></script>
-    <script src="app/blog/services/blogService.js"></script>
-    <script src="app/common/envConfig.js"></script>
-    <script src="app/navbar/controllers/navControl.js"></script>
-    <script src="app/podcast/controllers/podcastControl.js"></script>
-    <script src="app/podcast/services/podcastService.js"></script>
-    <script src="app/podcast/services/episodeUploadService.js"></script>
-    <script src="app/upload/controllers/episodeUploadControl.js"></script>
-    <script src="app/write/controllers/writeControl.js"></script>
-    <script src="app/login/controllers/loginControl.js"></script>
-    <script src="app/login/services/loginManager.js"></script>
+    <!-- inject:js -->
+
+    <!-- endinject -->
+
   </head>
 
   <body>
-    <div ng-app="blogcast">
-        <div ng-include="'app/navbar/templates/navbar.html'"></div>
+    <div>
+        <div ng-include="'templates/navbar/templates/navbar.html'"></div>
         <div ui-view></div>
     </div>
 
-    <div id="audioApp" ng-controller="audioCtrl">
+    <!-- <div id="audioApp" ng-controller="audioCtrl">
         <div ng-include="'app/player/templates/player.html'"></div>
-    </div>
+    </div> -->
   </body>
 </html>
