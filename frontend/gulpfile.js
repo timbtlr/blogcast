@@ -22,7 +22,9 @@ var gulp = require('gulp'),
     eslint = require("gulp-eslint"),
     angularFilesort = require('gulp-angular-filesort'),
     del = require("del"),
-    series = require('stream-series');
+    series = require('stream-series'),
+    ngConstant = require('gulp-ng-constant'),
+    rename = require('gulp-rename');
 
 let config = {
     output: "/code/public/",
@@ -30,9 +32,10 @@ let config = {
 }
 
 let globs = {
-    source: "/code/client/app/navbar/**/*.js",
+    source: "/code/client/app/podcast/**/*.js",
     template: "/code/client/app/**/*.html",
     style: "/code/client/app/**/*.css",
+    bowerStyle: "/code/client/bower_cache/**/*.css",
 }
 
 gulp.task("eslint", function() {
@@ -67,15 +70,36 @@ gulp.task("styles", function() {
         .pipe(gulpif(config.debug, sourcemaps.write()))
         .pipe(gulp.dest(config.output + "/styles/"))
         .pipe(browserSync.stream())
-})
 
-gulp.task("sources", function() {
-    gulp.src(globs.source)
+    gulp.src(globs.bowerStyle)
         .pipe(gulpif(config.debug, sourcemaps.init({loadMaps: true})))
         .pipe(gulpif(config.debug, sourcemaps.write()))
-        .pipe(gulp.dest(config.output + "/source/"))
+        .pipe(gulp.dest(config.output + "/styles/"))
         .pipe(browserSync.stream())
 })
+
+gulp.task('constants', function () {
+    return ngConstant({
+        name: "envConfig.js",
+        constants: {
+            ENV: {
+                name: 'prod',
+                adminPassword: process.env.ADMIN_PASSWORD,
+                blogcastApiUrl: process.env.BLOGCAST_URL,
+                blogcastApiKey: process.env.BLOGCAST_KEY,
+                awsAccessKey: process.env.AWS_ACCESS_KEY,
+                awsSecretKey: process.env.AWS_SECRET_KEY,
+                awsBucketName: process.env.AWS_BUCKET_NAME,
+                loginPassphrase: process.env.LOGIN_PASSPHRASE,
+            }
+        },
+        stream: true,
+        templatePath: "constants.tpl",
+        wrap: ""
+    })
+    .pipe(rename('envConfig.js'))
+    .pipe(gulp.dest('client/app/common/'));
+});
 
 
 // Transforms index.html and injects any css/js or env vars.
@@ -89,7 +113,6 @@ gulp.task("index", function() {
     var appStream = gulp.src([
         config.output + "bower/**/*.js",
         config.output + "styles/**/*.css",
-        config.output + "source/**/*.js",
         config.output + "*.js"
     ]);
 
@@ -119,7 +142,7 @@ gulp.task("serve", function() {
 function compile(watch) {
     watchify.args.debug = config.debug
     watchify.args.extensions = [".js"]
-    let bundler = browserify("/code/client/app/app.js", watchify.args)
+    let bundler = browserify("/code/client/app/app.js")
     if (watch) {
         bundler
             .plugin(watchify, {
@@ -191,7 +214,7 @@ gulp.task("watch-browserify", function() {
 })
 
 // Main commands
-gulp.task("build", ["bower", "sources", "templates", "styles", "index"])
+gulp.task("build", ["bower", "templates", "styles", "index"])
 gulp.task("default", ["build", "serve", "watch", "watch-browserify", "eslint"])
 gulp.task("clean", function() {
     return del([config.output + "**/*"])

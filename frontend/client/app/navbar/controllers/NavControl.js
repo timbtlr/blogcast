@@ -1,4 +1,3 @@
-const module = { exports: {} }
 module.exports = ($scope, $state, LoginManager) => {
     $scope.loggedIn = LoginManager.checkLogin()
 
