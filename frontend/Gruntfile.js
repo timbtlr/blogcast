@@ -16,7 +16,7 @@ module.exports = function(grunt) {
             // Options for all targets
             options: {
                 space: '  ',
-                wrap: '"use strict";\n\n {%= __ngModule %}',
+                wrap: 'module.exports = () => {%= __ngModule %}',
                 name: 'envConfig',
             },
             build: {

@@ -2,6 +2,7 @@
 node_modules
 bower_cache
 *envConfig*
+public/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

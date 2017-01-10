@@ -15,11 +15,12 @@ ADD . /code
 RUN     npm install --global nodemon
 RUN     npm install -g bower
 RUN     npm install -g grunt-cli
-RUN     npm install
+RUN     npm install -g gulp
+RUN     npm install .
 RUN     bower install --config.interactive=false --allow-root
 RUN     grunt
 
-EXPOSE 8000
+EXPOSE 3000
 
 ADD run /usr/local/bin/run
 RUN chmod +x /usr/local/bin/run
