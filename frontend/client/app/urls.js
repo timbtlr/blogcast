@@ -1,43 +1,43 @@
 module.exports = ($stateProvider) => {
-    'use strict'
+    "use strict"
 
-    $stateProvider.state('podcast',
+    $stateProvider.state("podcast",
         {
-            url: '/',
-            templateUrl: 'templates/podcast/templates/podcast.html',
-            controller: 'PodcastCtrl'
+            url: "/",
+            templateUrl: "templates/podcast/templates/podcast.html",
+            controller: "PodcastController"
         }
     )
 
-    $stateProvider.state('blog',
+    $stateProvider.state("blog",
         {
-            url: '/blog',
-            templateUrl: 'app/blog/templates/blog.html',
-            controller: 'BlogCtrl'
+            url: "/blog",
+            templateUrl: "templates/blog/templates/blog.html",
+            controller: "BlogController"
         }
     )
 
-    $stateProvider.state('write',
+    $stateProvider.state("write",
         {
-            url: '/write',
-            templateUrl: 'app/write/templates/writeBlog.html',
-            controller: 'WriteBlogCtrl'
+            url: "/write",
+            templateUrl: "templates/blog/templates/writeBlog.html",
+            controller: "WriteController"
         }
     )
 
-    $stateProvider.state('login',
+    $stateProvider.state("login",
         {
-            url: '/login',
-            templateUrl: 'app/login/templates/login.html',
-            controller: 'LoginCtrl'
+            url: "/login",
+            templateUrl: "templates/login/templates/login.html",
+            controller: "LoginCtrl"
         }
     )
 
-    $stateProvider.state('upload',
+    $stateProvider.state("upload",
         {
-            url: '/upload',
-            templateUrl: 'app/upload/templates/uploadEpisode.html',
-            controller: 'EpisodeUploadCtrl'
+            url: "/upload",
+            templateUrl: "templates/podcast/templates/uploadEpisode.html",
+            controller: "EpisodeUploadController"
         }
     )
 }

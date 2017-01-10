@@ -6,9 +6,9 @@ let blogcastInstalledApps = [
     require("./login"),
     require("./common"),
     require("./podcast"),
+    require("./blog"),
     require("./audio").sharedAudioService,
     require("./audio").audioPlayerApp,
-    // "BlogService",
     "LocalStorageModule",
     "ui.router",
     "ngSanitize",
@@ -42,9 +42,4 @@ angular
         localStorageServiceProvider.setPrefix("blogcast")
     }])
     .config(require("./urls"))
-
-
-
-angular.element(document).ready(() => {
-    angular.bootstrap(document.getElementById("audioApp"), ["audioPlayerApp"]);
-})
+    

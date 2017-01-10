@@ -1,4 +1,4 @@
-module.export = ($q, ENV) => {
+module.exports = function($q, ENV) {
     AWS.config.region = "us-east-1"
     AWS.config.update({
         accessKeyId: ENV.awsAccessKey,

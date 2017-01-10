@@ -1,5 +1,4 @@
 module.exports = ($resource, ENV) => {
-    console.log(ENV)
     return $resource(
         ENV.blogcastApiUrl.concat("episodes/:id"),
         {},

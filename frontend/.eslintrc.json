@@ -44,7 +44,6 @@
         "eqeqeq": ["error", "always"],
         "no-implicit-coercion": ["warn", { "boolean": false }],
         "no-implied-eval": ["error"],
-        "no-useless-return": ["error"],
         "no-label-var": ["error"],
         "no-use-before-define": ["error"],
         "array-bracket-spacing": ["error", "never"],

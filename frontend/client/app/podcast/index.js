@@ -1,6 +1,7 @@
 module.exports = angular
     .module("podcast", [])
-    //.service("EpisodeUploadService", require("./services/EpisodeUploadService"))
+    .controller("PodcastController", require("./controllers/PodcastControl"))
+    .controller("EpisodeUploadController", require("./controllers/EpisodeUploadControl"))
     .service("Episode", require("./services/EpisodeResource"))
-    .controller("PodcastCtrl", require("./controllers/PodcastControl"))
+    .service("EpisodeUploadService", require("./services/EpisodeUploadService"))
     .name

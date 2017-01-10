@@ -2,8 +2,8 @@ module.exports = ($scope, $sce, $timeout) => {
     $scope.API = null
     $scope.currentlyPlaying = null
 
-    $scope.setMedia = function(item, autoplay){
-        $scope.$apply(() => {
+    $scope.setMedia = (item, autoplay) => {
+        $scope.$evalAsync(() => {
             $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}]
             $scope.currentlyPlaying = item
 
@@ -17,7 +17,7 @@ module.exports = ($scope, $sce, $timeout) => {
     }
 
     $scope.initializeMedia = (item) => {
-        $scope.$apply(() => {
+        $scope.$evalAsync(() => {
             $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}]
             $scope.currentlyPlaying = item
         })
@@ -31,7 +31,7 @@ module.exports = ($scope, $sce, $timeout) => {
         type: "audio",
         sources: [],
         theme: {
-            url: "bower_cache/videogular-themes-default/videogular.css"
+            url: "styles/videogular-themes-default/videogular.css"
         },
         preload: "none",
         autoHide: false,

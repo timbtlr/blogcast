@@ -16,10 +16,15 @@ module.exports = ($scope, $sce, $timeout, AudioService, Episode) => {
         if (AudioService.getCurrentlyPlaying() !== null) {
             $scope.currentlyPlaying.playing = false
         }
-        angular.element($scope.playerElement).scope().setMedia(item, autoPlay)
-        $scope.currentlyPlaying = item
-        item.playing = true
-        AudioService.setCurrentlyPlaying(item)
+
+        let loadedElement = angular.element($scope.playerElement).scope()
+    
+        if (loadedElement !== undefined) {
+            loadedElement.setMedia(item, autoPlay)
+            $scope.currentlyPlaying = item
+            item.playing = true
+            AudioService.setCurrentlyPlaying(item)
+        }
     }
 
     angular.element(document).ready(() => {
