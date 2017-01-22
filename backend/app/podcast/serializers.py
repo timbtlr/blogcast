@@ -8,4 +8,4 @@ class EpisodeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Episode
-        fields = ("title", "description", "source", "image", "uploaded_time")
+        fields = ("id", "title", "description", "source", "image", "uploaded_time")
