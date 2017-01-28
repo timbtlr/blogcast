@@ -99,6 +99,8 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
     }
 
     $scope.deletePost = () => {
+        showSubmitMessage(true, "Post deleted")
+
         Post.delete(
             {
                 id: $scope.currentEditItem.id
