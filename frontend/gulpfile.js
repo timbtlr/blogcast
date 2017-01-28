@@ -31,10 +31,11 @@ let config = {
 let globs = {
     source: "/code/client/app/**/*.js",
     template: "/code/client/app/**/*.html",
-    style: "/code/client/app/**/*.css",
+    style: "/code/client/**/*.css",
     bowerStyle: "/code/client/bower_cache/**/*.css",
     ttf: "/code/client/bower_cache/**/*.ttf",
-    woff: "/code/client/bower_cache/**/*.woff"
+    woff: "/code/client/bower_cache/**/*.woff",
+    image: "/code/client/**/*.png"
 }
 
 gulp.task("eslint", function() {
@@ -69,6 +70,13 @@ gulp.task("templates", function() {
         .pipe(browserSync.stream())
 })
 
+gulp.task("images", function() {
+    gulp.src(globs.image)
+        .pipe(gulpif(config.debug, sourcemaps.init({loadMaps: true})))
+        .pipe(gulpif(config.debug, sourcemaps.write()))
+        .pipe(gulp.dest(config.output + "/images/"))
+        .pipe(browserSync.stream())
+})
 
 gulp.task("styles", function() {
     gulp.src(globs.style)
@@ -233,7 +241,7 @@ gulp.task("watch-browserify", function() {
 })
 
 // Main commands
-gulp.task("build", ["bower", "templates", "styles", "index"])
+gulp.task("build", ["bower", "templates", "styles", "images", "index"])
 gulp.task("default", ["build", "serve", "watch", "watch-browserify", "eslint"])
 gulp.task("clean", function() {
     return del([config.output + "**/*"])

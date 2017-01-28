@@ -9,6 +9,8 @@
     <base href="/">
 
     <title>A Podcast and Blog</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
 
     <!-- inject:css -->
 
@@ -21,13 +23,32 @@
   </head>
 
   <body>
-    <div>
-        <div ng-include="'templates/navbar/templates/navbar.html'"></div>
-        <div ui-view></div>
-    </div>
+    <!-- Page Header -->
+    <div ng-include="'templates/navbar/templates/navbar.html'"></div>
+    <div ng-include="'templates/header/templates/header.html'"></div>
+    <!-- END Page Header -->
 
+    <!-- Navigation bar and Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-9" ui-view></div>
+                <div class="col-xs-3" >
+                    <div ng-include="'templates/sidebar/templates/sidebar.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Navigation bar and Main Content -->
+
+    <!-- Audio Player -->
     <div id="audioApp" ng-controller="audioCtrl">
         <div ng-include="'/templates/audio/templates/player.html'"></div>
     </div>
+    <!-- END Audio Player -->
+
+    <div style="height:400px">
+    </div>
   </body>
 </html>
+

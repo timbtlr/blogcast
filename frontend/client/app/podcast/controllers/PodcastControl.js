@@ -1,6 +1,6 @@
 module.exports = ($scope, $sce, $timeout, AudioService, Episode) => {
     Episode.query().$promise.then((data) => {
-        $scope.playlist = data.data
+        $scope.playlist = $scope.reversePlaylist(data.data)
         if (AudioService.getCurrentlyPlaying() === null) {
             $scope.setMedia(data.data[0], false)
         } else {
@@ -12,13 +12,25 @@ module.exports = ($scope, $sce, $timeout, AudioService, Episode) => {
         }
     })
 
+    $scope.reversePlaylist = (data) => {
+
+        let index = 0
+        let newMap = _.map(data, (d) => {
+            d.index = data.length - index
+            d.uploaded_time = new Date(d.uploaded_time).toISOString().substring(0, 10)
+            index += 1
+            return d
+        })
+        return newMap
+    }
+
     $scope.setMedia = (item, autoPlay) => {
         if (AudioService.getCurrentlyPlaying() !== null) {
             $scope.currentlyPlaying.playing = false
         }
 
         let loadedElement = angular.element($scope.playerElement).scope()
-    
+
         if (loadedElement !== undefined) {
             loadedElement.setMedia(item, autoPlay)
             $scope.currentlyPlaying = item

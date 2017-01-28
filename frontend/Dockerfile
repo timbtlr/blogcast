@@ -14,7 +14,7 @@ ADD . /code
 # Install dependencies
 RUN     npm install --global nodemon
 RUN     npm install -g bower
-RUN     npm install -g grunt-cli
+RUN     npm install -g grunt-cli grunt
 RUN     npm install -g gulp
 RUN     npm install .
 RUN     bower install --config.interactive=false --allow-root

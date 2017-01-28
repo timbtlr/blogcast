@@ -1,4 +1,5 @@
 module.exports = ($scope, $state, ENV, LoginManager, Post) => {
+    $scope.view = "editor"
     $scope.editing = false
     $scope.currentEditItem = null
     $scope.loggedIn = LoginManager.checkLogin()
@@ -29,6 +30,10 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
         $scope.error = !success
         $scope.submitMessage = message
         $scope.showMessage = true
+    }
+
+    $scope.changeView = (type) => {
+        $scope.view = type
     }
 
     $scope.submitPost = () => {

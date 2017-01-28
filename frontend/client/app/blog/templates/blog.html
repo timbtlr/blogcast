@@ -1,20 +1,17 @@
-<div class="container">
-    <div class="col-lg-12">
-      <div class="col-lg-9">
-        <div marked="currentPost.text">
-        </div>
-      </div>
+<div class="col-lg-12">
+  <div class="col-lg-9">
+    <div marked="currentPost.text">
+    </div>
+  </div>
 
-      <div class="col-lg-3">
-        <div class="row" ng-repeat="item in postList">
-          <div class="post-list-item" ng-click="setPost(item)">
-            <div class="col-xs-12 playlist-block">
-              <div class="playlist-content">
-                  <p class="playlist-store"><strong>{{item.title}}</strong></p>
-                  <p class="playlist-store">{{item.description}}</p>
-                  <p class="playlist-store">{{item.author}}</p>
-              </div>
-            </div>
+  <div class="col-lg-3">
+    <div class="row" ng-repeat="item in postList" style="cursor: pointer; border: solid 1px black; margin-bottom: 5px">
+      <div class="post-list-item" ng-click="setPost(item)">
+        <div class="col-xs-12 playlist-block">
+          <div class="playlist-content">
+              <p class="playlist-store"><strong>{{item.title}}</strong></p>
+              <p class="playlist-store">{{item.description}}</p>
+              <p class="playlist-store">{{item.author}}</p>
           </div>
         </div>
       </div>

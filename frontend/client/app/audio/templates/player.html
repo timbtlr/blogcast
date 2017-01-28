@@ -1,19 +1,13 @@
-<div class="container" ng-if="currentlyPlaying != null">
+<div id="mainwrap" ng-if="currentlyPlaying != null">
   <div class="videogular-container audio">
-    <div class="row now-playing">
-      <div class="col-xs-12">
-          <div class="col-xs-1">
-            <img class="audio-player-image" ng-src="{{currentlyPlaying.image}}"></img>
-          </div>
-          <div class="col-xs-4 audio-player-title">
-            <span><strong>Now Playing:</strong> {{currentlyPlaying.title}}</span>
-          </div>
-      </div>
+    <div class="row" id="nowPlay">
+      <span class="left" id="npAction"><strong>Now Playing:</strong> {{currentlyPlaying.title}}</span>
+      <span class="right" id="npTitle"></span>
     </div>
+
     <videogular vg-player-ready="onPlayerReady($API)" vg-theme="config.theme.url" vg-auto-play="config.autoPlay" vg-complete="onCompleteVideo()">
       <vg-media vg-src="config.sources">
       </vg-media>
-
       <vg-controls>
           <vg-play-pause-button></vg-play-pause-button>
           <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>

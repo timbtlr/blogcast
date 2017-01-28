@@ -1,10 +1,19 @@
-<div class="collapse navbar-collapse" ng-controller="NavCtrl">
-    <ul class="nav navbar-nav navbar-right">
-        <li ng-class="{active: $state.is('podcast')}"><a ui-sref="podcast">Podcast</a></li>
-        <li ng-class="{active: $state.is('blog')}"><a ui-sref="blog">Blog</a></li>
-        <li ng-class="{active: $state.is('write')}" ng-show="loggedIn"><a ui-sref="write">Write Post</a></li>
-        <li ng-class="{active: $state.is('upload')}" ng-show="loggedIn"><a ui-sref="upload">Upload Audio</a></li>
-        <li ng-class="{active: $state.is('login')}" ng-show="!loggedIn"><a ui-sref="login">Login</a></li>
-        <li ng-show="loggedIn" ng-click="logout()"><a>Logout</a></li>
-    </ul>
+<div class="row" ng-controller="NavCtrl">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container">
+            <ul class="nav navbar-nav navbar-left">
+                <li><img style="height: 50px;" src="images/images/logo.png"/></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active: $state.is('podcast')}"><a ui-sref="podcast">Podcast</a></li>
+		        <li ng-class="{active: $state.is('blog')}"><a ui-sref="blog">Blog</a></li>
+		        <li ng-class="{active: $state.is('write')}" ng-show="loggedIn"><a ui-sref="write">Edit Blogs</a></li>
+		        <li ng-class="{active: $state.is('upload')}" ng-show="loggedIn"><a ui-sref="upload">Edit Podcast</a></li>
+		        <li ng-class="{active: $state.is('login')}" ng-show="!loggedIn"><a ui-sref="login">Login</a></li>
+		        <li ng-show="loggedIn" ng-click="logout()"><a>Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 </div>

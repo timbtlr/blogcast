@@ -6,9 +6,10 @@ module.exports = function(ENV, localStorageService) {
         login: function(password) {
             if (password === ENV.adminPassword) {
                 localStorageService.set(localStorageVarName, CryptoJS.AES.encrypt(password, ENV.loginPassphrase).toString())
-                //localStorageService.set(localStorageVarName, password)
                 loggedIn = true
+                return true
             }
+            return false
         },
         logout: function() {
             localStorageService.remove(localStorageVarName)
@@ -21,7 +22,6 @@ module.exports = function(ENV, localStorageService) {
                 let encrypted = localStorageService.get(localStorageVarName)
                 if (encrypted !== null) {
                     let existingAdminPassword = CryptoJS.AES.decrypt(encrypted, ENV.loginPassphrase).toString(CryptoJS.enc.Utf8)
-                    //let existingAdminPassword = encrypted
 
                     if (existingAdminPassword === ENV.adminPassword) {
                         loggedIn = true

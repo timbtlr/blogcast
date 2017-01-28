@@ -42,4 +42,3 @@ angular
         localStorageServiceProvider.setPrefix("blogcast")
     }])
     .config(require("./urls"))
-    

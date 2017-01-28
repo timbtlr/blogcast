@@ -1,20 +1,15 @@
-<div class="container">
-    <div>
-        <form novalidate>
-            <div class="row">
-                <div class="col-xs-10">
-                    <div class="col-xs-3">Admin Passwords</div>
-                    <div class="col-xs-7"><input type="text" type="password" ng-model="password" /></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-10">
-                    <div class="col-xs-3">
-                        <input type="submit" ng-click="login(password)" value="Login"/>
-                    </div>
-                </div>
-            </div>
-        </form>
+<div>
+    <div style="height: 1em;">
+        {{ errorState }}
     </div>
+    <form novalidate style="margin-top: 10px">
+        <div class="form-group">
+            <label for="password">Admin Password</label>
+            <input type="password" class="form-control" id="password" ng-model="password">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-md" ng-click="login(password)">
+            Login
+        </button>
+    </form>
 </div>
