@@ -4,6 +4,7 @@ from django.utils.timezone import now
 
 
 class Blog(models.Model):
+    id = models.CharField(primary_key=True, max_length=1000)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     author = models.CharField(max_length=100)

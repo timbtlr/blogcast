@@ -8,5 +8,6 @@ api:
         - DEBUG=true
         - PORT=49758
         - API_TOKEN=foo
+        - AUTO_MIGRATE=true
     volumes:
         - .:/code

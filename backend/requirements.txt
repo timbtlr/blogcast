@@ -8,3 +8,4 @@ envtpl==0.4.1
 django-cors-headers
 django-filter
 gunicorn
+python-slugify
