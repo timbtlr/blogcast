@@ -22,7 +22,7 @@ module.exports = ($stateProvider) => {
         resolve: {
             article: ["$stateParams", "Post", function ($stateParams, Post) {
                 let id = $stateParams.id
-                return Post.query(id)
+                return Post.get({id: id})
             }]
         }
     })

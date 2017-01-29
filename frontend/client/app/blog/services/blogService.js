@@ -13,6 +13,10 @@ module.exports = ($resource, ENV) => {
                 isArray: false,
                 headers: headerDict
             },
+            "get": {
+                method: "GET",
+                headers: headerDict
+            },
             "create": {
                 method: "POST",
                 headers: headerDict

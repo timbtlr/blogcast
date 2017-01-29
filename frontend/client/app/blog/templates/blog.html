@@ -1,14 +1,15 @@
 <div id="mainwrap">
     <div id="plwrap">
         <ul id="articleList">
-            <a ui-sref="articles({ id: item.id })">
               <li ng-repeat="item in postList" style="border-bottom: solid 1px #F1F1F1">
+                <a ng-href="articles/{{item.id}}">
                   <div class="plItem">
                       <div class="blogAuthor">Submitted By: {{ item.author }}</div>
                       <br/>
                       <div class="blogTitle">{{ item.title }}</div>
                       <div class="blogDescription">{{item.description}}</div>
                   </div>
+                </a>
               </li>
             </a>
         </ul>
