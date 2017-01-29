@@ -1,9 +1,11 @@
 module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, LoginManager, RedirectService) => {
-    console.log(RedirectService)
-
     RedirectService.checkLoggedIn()
 
     $scope.uploading = false
+
+    Episode.query().$promise.then((data) => {
+        $scope.playlist = data.data
+    })
 
     $scope.selectFile = function (file) {
         $scope.file = file
@@ -36,6 +38,17 @@ module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, Lo
 
     $scope.readyForUpload = function() {
         return $scope.file && $scope.episodeTitle !== undefined && $scope.episodeDescription !== undefined && $scope.episodeThumbnailImage !== undefined
+    }
+
+    $scope.deleteEpisode = (item) => {
+        Episode.delete(
+            {
+                id: item.id
+            }
+        )
+        setTimeout(function(){
+            $state.go("upload", {}, {"reload": true})
+        }, 1000)
     }
 
 }

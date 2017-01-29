@@ -1,6 +1,6 @@
 module.exports = ($resource, ENV) => {
     return $resource(
-        ENV.blogcastApiUrl.concat("episodes/:id"),
+        ENV.blogcastApiUrl.concat("episodes/:id/"),
         {},
         {
             "query": {
@@ -13,6 +13,13 @@ module.exports = ($resource, ENV) => {
             },
             "create": {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": ENV.blogcastApiKey
+                }
+            },
+            "delete": {
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": ENV.blogcastApiKey

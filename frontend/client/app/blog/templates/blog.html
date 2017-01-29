@@ -1,20 +1,16 @@
-<div class="col-lg-12">
-  <div class="col-lg-9">
-    <div marked="currentPost.text">
+<div id="mainwrap">
+    <div id="plwrap">
+        <ul id="articleList">
+            <a ui-sref="articles({ id: item.id })">
+              <li ng-repeat="item in postList" style="border-bottom: solid 1px #F1F1F1">
+                  <div class="plItem">
+                      <div class="blogAuthor">Submitted By: {{ item.author }}</div>
+                      <br/>
+                      <div class="blogTitle">{{ item.title }}</div>
+                      <div class="blogDescription">{{item.description}}</div>
+                  </div>
+              </li>
+            </a>
+        </ul>
     </div>
-  </div>
-
-  <div class="col-lg-3">
-    <div class="row" ng-repeat="item in postList" style="cursor: pointer; border: solid 1px black; margin-bottom: 5px">
-      <div class="post-list-item" ng-click="setPost(item)">
-        <div class="col-xs-12 playlist-block">
-          <div class="playlist-content">
-              <p class="playlist-store"><strong>{{item.title}}</strong></p>
-              <p class="playlist-store">{{item.description}}</p>
-              <p class="playlist-store">{{item.author}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

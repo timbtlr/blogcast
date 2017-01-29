@@ -57,4 +57,17 @@
             </div>
         </div>
     </form>
+
+    <hr>
+
+    <div class="dropdown" style="margin: 10px 0 10px 0;">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Delete a post
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li ng-repeat="item in playlist" ng-click="deleteEpisode(item)">
+                <a href="#">{{item.title}}</a>
+            </li>
+        </ul>
+    </div>
 </div>
