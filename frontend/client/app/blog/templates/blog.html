@@ -1,6 +1,11 @@
 <div id="mainwrap">
     <div id="plwrap">
-        <ul id="articleList">
+        <div class="btn-group" style="float: right; padding-right: 10px">
+            <button type="button" class="btn btn-primary" ng-style="filterActive('Technology') ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="toggleFilter('Technology')">Technology</button>
+            <button type="button" class="btn btn-primary" ng-style="filterActive('Gaming') ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="toggleFilter('Gaming')">Gaming</button>
+            <button type="button" class="btn btn-primary" ng-style="filterActive('Variety') ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="toggleFilter('Variety')">Variety</button>
+        </div>
+        <ul id="articleList" style="padding-top: 55px;">
               <li ng-repeat="item in postList" style="border-bottom: solid 1px #F1F1F1">
                 <a ng-href="articles/{{item.id}}">
                   <div class="plItem">

@@ -2,14 +2,10 @@
     {{ submitMessage }}
 </div>
 
-<ul class="nav nav-tabs">
-    <li ng-class="view == 'editor' ? 'active' : null" ng-click="changeView('editor')"><a href="#">Editor</a></li>
-    <li ng-class="view == 'preview' ? 'active' : null" ng-click="changeView('preview')"><a href="#">Preview</a></li>
-</ul>
-
 <form novalidate>
     <div class="dropdown" style="margin: 10px 0 10px 0;">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Post to Edit
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
+            {{ dropdownText }}
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
@@ -18,7 +14,10 @@
             </li>
             <li class="divider"></li>
             <li ng-repeat="item in postList" ng-click="editPost(item)">
-                <a href="#">{{item.title}}</a>
+                <a href="#">
+                    {{item.title}}
+                    <span ng-hide="!item.is_draft" style="color: red"><em> DRAFT</em></span>
+                </a>
             </li>
         </ul>
     </div>
@@ -35,17 +34,34 @@
         <input type="text" class="form-control" id="author" ng-model="postAuthor">
     </div>
 
-    <button ng-disabled="!readyToSave()" type="button" class="btn btn-primary btn-md" ng-click="submitPost()">
-        {{ submitLabel }}
-    </button>
+    <div class="btn-group" ng-model="postCategory">
+      <button type="button" class="btn btn-primary" ng-style="postCategory == 'Technology' ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="changeCategory('Technology')">Technology</button>
+      <button type="button" class="btn btn-primary" ng-style="postCategory == 'Gaming' ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="changeCategory('Gaming')">Gaming</button>
+      <button type="button" class="btn btn-primary" ng-style="postCategory == 'Variety' ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="changeCategory('Variety')">Variety</button>
+    </div>
 
-    <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" ng-click="deletePost()">
-        Delete Post
-    </button>
+    <hr/>
+
+    <ul class="nav nav-tabs">
+        <li ng-class="view == 'editor' ? 'active' : null" ng-click="changeView('editor')"><a href="#">Editor</a></li>
+        <li ng-class="view == 'preview' ? 'active' : null" ng-click="changeView('preview')"><a href="#">Preview</a></li>
+    </ul>
 
     <textarea ng-show="view == 'editor'" style="width: 100%; height: 100%; margin-top: 10px;" rows="30" ng-model="blogText">
     </textarea>
 
     <div ng-show="view == 'preview'" class="col-lg-5" style="overflow-y: scroll; border: 1px solid black; width: 100%; height: 500px" marked="blogText">
     </div>
+
+    <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
+        {{ submitLabel }}
+    </button>
+    
+    <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-info" ng-click="submitDraft()">
+        Save as Draft
+    </button>
+
+    <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" ng-click="deletePost()">
+        Delete Post
+    </button>
 </form>

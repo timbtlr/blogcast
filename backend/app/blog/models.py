@@ -10,4 +10,12 @@ class Blog(models.Model):
     author = models.CharField(max_length=100)
     image = models.CharField(max_length=500, blank=True, null=True)
     text = models.TextField()
+    category = models.CharField(max_length=100)
+    uploaded_time = models.DateTimeField(blank=True, null=True, default=now)
+    is_draft = models.BooleanField(default=False)
+
+
+class BlogImage(models.Model):
+    file_name = models.CharField(max_length=500)
+    source = models.CharField(max_length=500)
     uploaded_time = models.DateTimeField(blank=True, null=True, default=now)

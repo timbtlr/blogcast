@@ -4,7 +4,6 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
     $scope.currentEditItem = null
     $scope.loggedIn = LoginManager.checkLogin()
     $scope.showMessage = false
-    $scope.submitLabel = "Submit Post"
 
     if (!$scope.loggedIn) {
         $state.go("podcast")
@@ -36,38 +35,6 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
         $scope.view = type
     }
 
-    $scope.submitPost = () => {
-        if ($scope.editing) {
-            Post.update(
-                {
-                    id: $scope.currentEditItem.id
-                },
-                {
-                    "title": $scope.postTitle,
-                    "description": $scope.postDescription,
-                    "author": $scope.postAuthor,
-                    "text": $scope.blogText
-                }
-            )
-
-        } else {
-            Post.create({
-                "title": $scope.postTitle,
-                "description": $scope.postDescription,
-                "author": $scope.postAuthor,
-                "text": $scope.blogText
-            })
-
-            setDefaultForm()
-        }
-
-        setTimeout(() => {
-            $state.go("write", {}, {"reload": true})
-        }, 1000)
-
-        showSubmitMessage(true, "Post submitted")
-    }
-
     $scope.readyToSave = () => {
         return $scope.postAuthor !== undefined && $scope.postTitle !== undefined && $scope.postDescription !== undefined && $scope.blogText !== ""
     }
@@ -77,14 +44,17 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
             $scope.currentEditItem = null
             $scope.editing = false
             $scope.submitLabel = "Submit Post"
+            $scope.dropdownText = "Creating New Post"
+            $scope.postCategory = "Technology"
             setDefaultForm()
         }
     }
 
-    // For editing posts
-    Post.query().$promise.then((data) => {
-        $scope.postList = data.data
-    })
+    $scope.queryForPosts = () => {
+        Post.query().$promise.then((data) => {
+            $scope.postList = data.data
+        })
+    }
 
     $scope.editPost = (item) => {
         if (shouldLeave()) {
@@ -93,9 +63,54 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
             $scope.postAuthor = item.author
             $scope.blogText = item.text
             $scope.currentEditItem = item
+            $scope.postCategory = item.category
             $scope.editing = true
+            $scope.dropdownText = "Editing " + item.title
             $scope.submitLabel = "Edit Post"
         }
+    }
+
+    $scope.submitDraft = () => {
+        $scope.draft = true
+        $scope.savePost()
+    }
+
+    $scope.submitPost = () => {
+        $scope.draft = false
+        $scope.savePost()
+    }
+
+    $scope.savePost = () => {
+        if ($scope.editing) {
+            Post.update(
+                {
+                    id: $scope.currentEditItem.id
+                },
+                {
+                    "title": $scope.postTitle,
+                    "description": $scope.postDescription,
+                    "author": $scope.postAuthor,
+                    "text": $scope.blogText,
+                    "category": $scope.postCategory,
+                    "is_draft": $scope.draft
+                }
+            )
+
+        } else {
+            Post.create({
+                "title": $scope.postTitle,
+                "description": $scope.postDescription,
+                "author": $scope.postAuthor,
+                "text": $scope.blogText,
+                "category": $scope.postCategory,
+                "is_draft": $scope.draft
+            })
+
+            $scope.editing = true
+        }
+
+        $scope.queryForPosts()
+        showSubmitMessage(true, "Post submitted")
     }
 
     $scope.deletePost = () => {
@@ -110,8 +125,12 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
         $scope.currentEditItem = null
         $scope.editing = false
         $scope.submitLabel = "Submit Post"
-        setTimeout(function(){
-            $state.go("write", {}, {"reload": true})
-        }, 1000)
     }
+
+    $scope.changeCategory = (type) => {
+        $scope.postCategory = type
+    }
+
+    $scope.queryForPosts()
+    $scope.writeNewPost()
 }
