@@ -1,0 +1,27 @@
+<div id="searchImageModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    Choose an image from below and it will be added to the blog content
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="author">Search</label>
+                    <input type="text" class="form-control" id="author" ng-model="imageFilterString">
+                </div>
+
+                <hr />
+                <div style="height: 200px; overflow-y: scroll;">
+                    <button type="button" ng-repeat="image in filterImages()" class="btn btn-xs btn-primary" style="width: 100%" ng-click="insertImage(image.source)">{{image.file_name}}</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    

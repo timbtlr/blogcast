@@ -12,6 +12,12 @@ ul {
     list-style:none; 
 }
 
+.blogHeading { 
+    color: orange; 
+    font-weight: bold; 
+    font-family: 'Comfortaa', cursive;
+}
+
 
 /*
     PLAYLIST STYLES

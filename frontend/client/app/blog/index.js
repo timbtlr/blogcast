@@ -4,4 +4,5 @@ module.exports = angular
     .controller("ArticleController", require("./controllers/articleControl"))
     .controller("WriteController", require("./controllers/writeControl"))
     .service("Post", require("./services/blogService"))
+    .service("BlogImage", require("./services/blogImage"))
     .name

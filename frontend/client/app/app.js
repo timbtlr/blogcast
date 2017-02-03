@@ -28,15 +28,16 @@ angular
         $urlRouterProvider.otherwise("/")
 
         // Force markdown links to be opened in a new tab by default
-        markedProvider.setOptions({gfm: true})
-        // markedProvider.setRenderer({
-        //     link: function(href, title, text) {
-        //         return `
-        //             <a href=" + #{href} + " + (title ?  title=" + title + " : ") +  target="_blank"> + text + </a>;
-        //         `
+        markedProvider.setOptions({
+            gfm: true,
+            tables: true
+        })
 
-        //     }
-        // })
+        markedProvider.setRenderer({
+            link: function(href, title, text) {
+                return `<a href="` + href + `" target="_blank">` + text + `</a>`
+            }
+        })
 
         // Local storage options
         localStorageServiceProvider.setPrefix("blogcast")

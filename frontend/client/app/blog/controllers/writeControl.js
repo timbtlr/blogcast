@@ -1,4 +1,4 @@
-module.exports = ($scope, $state, ENV, LoginManager, Post) => {
+module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUploadService) => {
     $scope.view = "editor"
     $scope.editing = false
     $scope.currentEditItem = null
@@ -53,6 +53,12 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
     $scope.queryForPosts = () => {
         Post.query().$promise.then((data) => {
             $scope.postList = data.data
+        })
+    }
+
+    $scope.queryForImages = () => {
+        BlogImage.query().$promise.then((data) => {
+            $scope.imageList = data.data
         })
     }
 
@@ -131,6 +137,75 @@ module.exports = ($scope, $state, ENV, LoginManager, Post) => {
         $scope.postCategory = type
     }
 
+    $scope.selectFile = function (file) {
+        $scope.file = file
+        $scope.s3FilePath = "https://s3.amazonaws.com/" + ENV.awsBucketName + "/" + file.name
+        $scope.uploading = false
+        $scope.uploadFile()
+    }
+
+    $scope.uploadFile = function () {
+        if ($scope.file) {
+            $scope.uploading = true
+            EpisodeUploadService.Upload($scope.file).then(() => {
+                // Mark as success
+                $scope.file.Success = true
+                BlogImage.create({
+                    "file_name": $scope.file.name,
+                    "source": $scope.s3FilePath
+                })
+            }, (error) => {
+                // Mark the error
+                $scope.Error = error
+            }, (progress) => {
+                // Write the progress as a percentage
+                $scope.file.Progress = (progress.loaded / progress.total) * 100
+            })
+        }
+
+        $scope.queryForImages()
+    }
+
+    $scope.totalText = () => {
+        if ($scope.postTitle === null) {
+            $scope.postTitle = ""
+        }
+        
+        if ($scope.blogText) {
+            return `<center> <h1 style="font-weight: bold; font-family: 'Comfortaa', cursive;">` + $scope.postTitle + `</h1> </center>\n\n` + $scope.blogText
+        } else {
+            return `<center> <h1 style="font-weight: bold; font-family: 'Comfortaa', cursive;">` + $scope.postTitle + `</h1> </center>\n\n`
+        }
+    }
+
+    $scope.insertImage = (fileSource) => {
+        if ($scope.blogText) {
+            $scope.blogText = $scope.blogText + `\n\n<div style="text-align: center"><img style="max-width: 650px;" src="` + fileSource + `"/></div>\n\n`
+        } else {
+            $scope.blogText = `<div style="text-align: center"><img style="max-width: 650px;" src="` + fileSource + `"/></div>\n\n`
+        }
+    }
+
+    $scope.insertHeading = () => {
+        if ($scope.blogText) {
+            $scope.blogText = $scope.blogText + `\n\n<center> <h2 style="font-weight: bold; font-family: 'Comfortaa', cursive;"> Heading </h2> </center>\n\n`
+        } else {
+            $scope.blogText = `<center> <h2 style="font-weight: bold; font-family: 'Comfortaa', cursive;"> Heading </h2> </center>\n\n`
+        }
+    }
+
+    $scope.filterImages = () => {
+        if ($scope.imageFilterString) {
+            return _.filter($scope.imageList, (image) => {
+                return image.file_name.toLowerCase().includes($scope.imageFilterString.toLowerCase())
+            })
+        }
+
+        return $scope.imageList
+    }
+
+    $scope.uploading = false
     $scope.queryForPosts()
+    $scope.queryForImages()
     $scope.writeNewPost()
 }

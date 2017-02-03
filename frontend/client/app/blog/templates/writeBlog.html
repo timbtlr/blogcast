@@ -2,6 +2,7 @@
     {{ submitMessage }}
 </div>
 
+
 <form novalidate>
     <div class="dropdown" style="margin: 10px 0 10px 0;">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
@@ -26,11 +27,11 @@
         <input type="text" class="form-control" id="title" ng-model="postTitle">
     </div>
     <div class="form-group">
-        <label for="description">Description:</label>
+        <label for="description">Description</label>
         <input type="text" class="form-control" id="description" ng-model="postDescription">
     </div>
     <div class="form-group">
-        <label for="author">Author:</label>
+        <label for="author">Author</label>
         <input type="text" class="form-control" id="author" ng-model="postAuthor">
     </div>
 
@@ -42,6 +43,13 @@
 
     <hr/>
 
+    <!-- Find an uploaded image button / modal-->
+    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#uploadModal">Upload an Image</button>
+    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#searchImageModal">Find an image to insert</button>
+    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" ng-click="insertHeading()">Insert Heading</button>
+
+    <hr/>
+
     <ul class="nav nav-tabs">
         <li ng-class="view == 'editor' ? 'active' : null" ng-click="changeView('editor')"><a href="#">Editor</a></li>
         <li ng-class="view == 'preview' ? 'active' : null" ng-click="changeView('preview')"><a href="#">Preview</a></li>
@@ -50,7 +58,7 @@
     <textarea ng-show="view == 'editor'" style="width: 100%; height: 100%; margin-top: 10px;" rows="30" ng-model="blogText">
     </textarea>
 
-    <div ng-show="view == 'preview'" class="col-lg-5" style="overflow-y: scroll; border: 1px solid black; width: 100%; height: 500px" marked="blogText">
+    <div ng-show="view == 'preview'" class="col-lg-5" style="overflow-y: scroll; border: 1px solid black; width: 100%; height: 500px" marked="totalText()">
     </div>
 
     <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
@@ -65,3 +73,6 @@
         Delete Post
     </button>
 </form>
+
+<div ng-include="'templates/blog/templates/uploadImageModal.html'"></div>
+<div ng-include="'templates/blog/templates/insertImageModal.html'"></div>
