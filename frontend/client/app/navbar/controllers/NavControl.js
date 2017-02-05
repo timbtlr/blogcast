@@ -16,4 +16,13 @@ module.exports = ($scope, $state, LoginManager) => {
             $scope.loggedIn = newValue
         }
     )
+
+    $scope.stateIs = (typeArray) => {
+        for (let type of typeArray) {
+            if ($state.is(type)) {
+                return true
+            }
+        }
+        return false
+    }
 }

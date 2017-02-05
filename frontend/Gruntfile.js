@@ -16,8 +16,9 @@ module.exports = function(grunt) {
             // Options for all targets
             options: {
                 space: '  ',
-                wrap: 'module.exports = () => {%= __ngModule %}',
+                wrap: 'module.exports = {%= __ngModule %}',
                 name: 'envConfig',
+                template:  grunt.file.read('constants.tpl')
             },
             build: {
                 options: {

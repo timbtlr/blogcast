@@ -4,14 +4,14 @@
         
         <div class="container">
             <ul class="nav navbar-nav navbar-left">
-                <li><img style="height: 50px;" src="images/images/logo.png"/></li>
+                <li><img style="height: 50px;" src="images/images/LogoRecolorV2.png"/></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{active: $state.is('podcast')}"><a ui-sref="podcast">Podcast</a></li>
-		        <li ng-class="{active: $state.is('blog')}"><a ui-sref="blog">Blog</a></li>
-		        <li ng-class="{active: $state.is('write')}" ng-show="loggedIn"><a ui-sref="write">Edit Blogs</a></li>
-		        <li ng-class="{active: $state.is('upload')}" ng-show="loggedIn"><a ui-sref="upload">Edit Podcast</a></li>
-		        <li ng-class="{active: $state.is('login')}" ng-show="!loggedIn"><a ui-sref="login">Login</a></li>
+                <li ng-class="{navactive: stateIs(['podcast'])}"><a ui-sref="podcast">Podcast</a></li>
+		        <li ng-class="{navactive: stateIs(['blog', 'articles'])}"><a ui-sref="blog">Blog</a></li>
+		        <li ng-class="{navactive: stateIs(['write'])}" ng-show="loggedIn"><a ui-sref="write">Edit Blogs</a></li>
+		        <li ng-class="{navactive: stateIs(['upload'])}" ng-show="loggedIn"><a ui-sref="upload">Edit Podcast</a></li>
+		        <li ng-class="{navactive: stateIs(['login'])}" ng-show="!loggedIn"><a ui-sref="login">Login</a></li>
 		        <li ng-show="loggedIn" ng-click="logout()"><a>Logout</a></li>
             </ul>
         </div>

@@ -1,7 +1,7 @@
 <div id="mainwrap">
     <div id="plwrap">
-        <ul id="plList">
-            <li ng-repeat="item in playlist track by item.index" ng-style="item.playing ? {'background-color': '#eeeeee', 'color': '#EB6F3E'} : {'background-color': '#fafafa'}" style="border-bottom: solid 1px #F1F1F1" ng-click="setMedia(item, true)">
+        <ul class="plList">
+            <li ng-repeat="item in playlist track by item.index" ng-style="item.playing ? {'background-color': '#eeeeee', 'color': '#007aa7'} : {'background-color': '#fafafa'}" style="border-bottom: solid 1px #F1F1F1" ng-click="setMedia(item, true)">
                 <div class="plItem">
                     <div class="plNum">{{ item.index }}.</div>
                     <div class="plTitle">{{ item.title }}</div>

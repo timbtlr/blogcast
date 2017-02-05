@@ -29,6 +29,7 @@ let config = {
 }
 
 let globs = {
+    env: "/code/client/app/common/envConfig.js",
     source: "/code/client/app/**/*.js",
     template: "/code/client/app/**/*.html",
     style: "/code/client/**/*.css",
@@ -238,6 +239,10 @@ gulp.task("watch", [], function() {
 
 gulp.task("watch-browserify", function() {
     return compile(true)
+})
+
+gulp.task("browserify", function() {
+    return compile(false)
 })
 
 // Main commands

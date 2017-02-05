@@ -1,5 +1,5 @@
 set -e
 
-grunt
+grunt; gulp browserify
 
 exec nodemon server/app.js
