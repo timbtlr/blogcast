@@ -5,17 +5,23 @@
             <button type="button" class="btn btn-primary" ng-style="filterActive('Gaming') ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="toggleFilter('Gaming')">Gaming</button>
             <button type="button" class="btn btn-primary" ng-style="filterActive('Variety') ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="toggleFilter('Variety')">Variety</button>
         </div>
-        <ul class="plList" style="padding-top: 55px;">
-              <li ng-repeat="item in postList" style="border-bottom: solid 1px #F1F1F1">
-                <a ng-href="articles/{{item.id}}">
-                  <div class="plItem">
-                      <div class="blogAuthor">Submitted By: {{ item.author }}</div>
-                      <br/>
+        <ul class="blogList" style="padding-top: 55px;">
+              <a ng-href="articles/{{item.id}}" ng-repeat="item in postList">
+                <li style="border-bottom: solid 1px #F1F1F1">
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-xs-6">
+                      <img class="blogItemImage" ng-src="{{item.image}}" />
+                    </div>
+                    <div class="col-xs-6 blogItem">
                       <div class="blogTitle">{{ item.title }}</div>
                       <div class="blogDescription">{{item.description}}</div>
+                      <div class="blogAuthor">Submitted By: {{ item.author }}</div>
+                    </div>
                   </div>
-                </a>
-              </li>
+                </li>
+              </a>
             </a>
         </ul>
     </div>

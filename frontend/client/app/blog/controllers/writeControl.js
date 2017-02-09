@@ -190,7 +190,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
         if ($scope.blogText) {
             $scope.blogText = $scope.blogText + `\n\n<center> <h2 style="font-weight: bold; font-family: 'Comfortaa', cursive;"> Heading </h2> </center>\n\n`
         } else {
-            $scope.blogText = `<center> <h2 style="font-weight: bold; font-family: 'Comfortaa', cursive;"> Heading </h2> </center>\n\n`
+            $scope.blogText = `<center> <h3 class="blogHeading"> Heading </h3> </center>\n\n`
         }
     }
 
