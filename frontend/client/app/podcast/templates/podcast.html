@@ -1,4 +1,8 @@
 <div id="mainwrap">
+    <div class="site-heading" style="width: 100%; text-align:center">
+      <img style="height: 125px; margin-top: -75px" src="images/images/PodcastTitle.png"/>
+      <hr class="medium">
+    </div>
     <div id="plwrap">
         <ul class="plList">
             <li ng-repeat="item in playlist track by item.index" ng-style="item.playing ? {'background-color': '#eeeeee', 'color': '#007aa7'} : {'background-color': '#fafafa'}" style="border-bottom: solid 1px #F1F1F1" ng-click="setMedia(item, true)">

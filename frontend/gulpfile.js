@@ -103,6 +103,13 @@ gulp.task("styles", function() {
         .pipe(gulpif(config.debug, sourcemaps.write()))
         .pipe(gulp.dest(config.output + "/styles/"))
         .pipe(browserSync.stream())
+
+    // Force images to be used for the WYSIWYG text editor.
+    gulp.src("/code/client/bower_cache/ngWYSIWYG/dist/images/*")
+        .pipe(gulpif(config.debug, sourcemaps.init({loadMaps: true})))
+        .pipe(gulpif(config.debug, sourcemaps.write()))
+        .pipe(gulp.dest(config.output + "/styles/bower_cache/ngWYSIWYG/dist/images/"))
+        .pipe(browserSync.stream())
 })
 
 gulp.task("constants", function () {
@@ -133,7 +140,9 @@ gulp.task("index", function() {
     let target = gulp.src("/code/client/index.html")
 
     let vendorStream = gulp.src([
-        config.output + "bower/angular/*.js"
+        config.output + "bower/angular/*.js",
+        config.output + "bower/jquery/dist/*.js"
+
     ]).pipe(angularFilesort())
 
     let appStream = gulp.src([

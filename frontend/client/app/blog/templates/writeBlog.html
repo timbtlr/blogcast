@@ -5,7 +5,7 @@
 
 <form novalidate>
     <div class="dropdown" style="margin: 10px 0 10px 0;">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
+        <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
             {{ dropdownText }}
             <span class="caret"></span>
         </button>
@@ -35,44 +35,31 @@
         <input type="text" class="form-control" id="author" ng-model="postAuthor">
     </div>
 
-    <div class="btn-group" ng-model="postCategory">
-      <button type="button" class="btn btn-primary" ng-style="postCategory == 'Technology' ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="changeCategory('Technology')">Technology</button>
-      <button type="button" class="btn btn-primary" ng-style="postCategory == 'Gaming' ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="changeCategory('Gaming')">Gaming</button>
-      <button type="button" class="btn btn-primary" ng-style="postCategory == 'Variety' ? {'font-weight': 'bold', 'color': '#D4C96A'} : {'color': 'white'}" ng-click="changeCategory('Variety')">Variety</button>
+    <div class="form-group">
+        <label for="author">Category</label>
+        <br/>
+        <div class="btn-group" ng-model="postCategory">
+          <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Technology' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Technology')">Technology</button>
+          <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Gaming' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Gaming')">Gaming</button>
+          <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Variety' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Variety')">Variety</button>
+        </div>
     </div>
 
     <hr/>
 
-    <!-- Find an uploaded image button / modal-->
-    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#uploadModal">Upload an Image</button>
-    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#searchImageModal">Find an image to insert</button>
-    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" ng-click="insertHeading()">Insert Heading</button>
-
-    <hr/>
-
-    <ul class="nav nav-tabs">
-        <li ng-class="view == 'editor' ? 'active' : null" ng-click="changeView('editor')"><a href="#">Editor</a></li>
-        <li ng-class="view == 'preview' ? 'active' : null" ng-click="changeView('preview')"><a href="#">Preview</a></li>
-    </ul>
-
-    <textarea ng-show="view == 'editor'" style="width: 100%; height: 100%; margin-top: 10px;" rows="30" ng-model="blogText">
-    </textarea>
-
-    <div ng-show="view == 'preview'" class="col-lg-5" style="overflow-y: scroll; border: 1px solid black; width: 100%; height: 500px" marked="totalText()">
-    </div>
+    <wysiwyg-edit content="blogText"></wysiwyg-edit>
 
     <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
-        {{ submitLabel }}
+        Publish Post
     </button>
     
-    <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-info" ng-click="submitDraft()">
+    <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-warning" ng-click="submitDraft()">
         Save as Draft
     </button>
 
-    <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" ng-click="deletePost()">
+    <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" data-toggle="modal" data-target="#deletePostModal">
         Delete Post
     </button>
 </form>
 
-<div ng-include="'templates/blog/templates/uploadImageModal.html'"></div>
-<div ng-include="'templates/blog/templates/insertImageModal.html'"></div>
+<div ng-include="'templates/blog/templates/deletePostModal.html'"></div>

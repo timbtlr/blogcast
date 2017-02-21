@@ -20,7 +20,7 @@
     "bootstrap": "^3.3.6",
     "angular-bootstrap": "^1.3.3",
     "videogular": "latest",
-    "angular-sanitize": "latest",
+    "angular-sanitize": "1.2.0",
     "angular-resource": "~1.4.8",
     "videogular-controls": "latest",
     "videogular-themes-default": "latest",
@@ -28,11 +28,15 @@
     "angular-resource": "~1.4.8",
     "angular-marked": "1.2.2",
     "angular-local-storage": "0.5.2",
+    "crypto-js": "3.1.9-1",
     "browserify-cryptojs": "0.3.1",
     "ng-file-upload": "12.2.13",
-    "aws-sdk-js": "2.1.48"
+    "aws-sdk-js": "2.1.48",
+    "ngWYSIWYG": "0.6.2",
+    "jquery": "latest"
   },
   "resolutions": {
-    "angular": "^1.5.7"
+    "angular": "^1.5.7",
+    "angular-sanitize": "1.2.0"
   }
 }

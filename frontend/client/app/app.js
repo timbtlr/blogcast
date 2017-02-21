@@ -16,24 +16,21 @@ let blogcastInstalledApps = [
     "com.2fdevs.videogular.plugins.controls",
     "ngFileUpload",
     "hc.marked",
-    "ngResource"
+    "ngResource",
+    "ngWYSIWYG"
 ]
 
 angular
     .module("blogcast", blogcastInstalledApps)
-    .config(["$urlRouterProvider", "$locationProvider", "markedProvider", "localStorageServiceProvider", function ($urlRouterProvider, $locationProvider, markedProvider, localStorageServiceProvider) {
+    .config(["$urlRouterProvider", "$locationProvider", "localStorageServiceProvider", function ($urlRouterProvider, $locationProvider, localStorageServiceProvider) {
         "use strict"
 
         $locationProvider.html5Mode(true)
         $urlRouterProvider.otherwise("/")
 
-        markedProvider.setRenderer({
-            link: function(href, title, text) {
-                return `<a href="` + href + `" target="_blank">` + text + `</a>`
-            }
-        })
-
         // Local storage options
         localStorageServiceProvider.setPrefix("blogcast")
     }])
     .config(require("./urls"))
+
+
