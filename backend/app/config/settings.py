@@ -2,6 +2,8 @@ from __future__ import absolute_import
 import os
 import dj_database_url
 
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
@@ -27,14 +29,18 @@ REST_FRAMEWORK = {
         'app.common.renderers.SiteJsonRenderer',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication'
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DATETIME_FORMAT': None,
     'DATE_FORMAT': None,
     'TIME_FORMAT': None
+}
+
+JWT_AUTH = {
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7)
 }
 
 INSTALLED_APPS = (

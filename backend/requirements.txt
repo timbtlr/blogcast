@@ -9,3 +9,5 @@ django-cors-headers
 django-filter
 gunicorn
 python-slugify
+djangorestframework-jwt
+rest_condition
