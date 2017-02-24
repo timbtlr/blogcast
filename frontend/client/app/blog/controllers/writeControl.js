@@ -1,19 +1,21 @@
-module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUploadService) => {
+module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
     $scope.view = "editor"
     $scope.editing = false
     $scope.currentEditItem = undefined
-    $scope.loggedIn = LoginManager.checkLogin()
+    $scope.loggedIn = false
     $scope.showMessage = false
+
+    LoginManager.checkLogin().then(() => {
+        $scope.loggedIn = true
+    }).catch(() => {
+        $state.go("login")
+    })
 
     let setDefaultForm = () => {
         $scope.postTitle = ""
         $scope.postDescription = ""
         $scope.postAuthor = ""
         $scope.blogText = ""
-    }
-
-    if (!$scope.loggedIn) {
-        $state.go("podcast")
     }
 
     let shouldLeave = () => {

@@ -1,7 +1,7 @@
-module.exports = ($resource, ENV) => {
+module.exports = ($resource, ENV, localStorageService) => {
     let headerDict = {
         "Content-Type": "application/json",
-        "Authorization": ENV.blogcastApiKey
+        "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
     }
 
     return $resource(

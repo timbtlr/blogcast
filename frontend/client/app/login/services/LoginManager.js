@@ -1,35 +1,54 @@
-module.exports = function(ENV, localStorageService) {
+module.exports = ($q, ENV, localStorageService, Login, Verify) => {
     let loggedIn = false
-    let localStorageVarName = "adminPassword"
-
     return {
-        login: function(password) {
-            if (password === ENV.adminPassword) {
-                localStorageService.set(localStorageVarName, CryptoJS.AES.encrypt(password, ENV.loginPassphrase).toString())
-                loggedIn = true
-                return true
-            }
-            return false
+        loggedIn: () => {
+            return loggedIn
         },
-        logout: function() {
-            localStorageService.remove(localStorageVarName)
+        login: (username, password) => {
+            let deferred = $q.defer()
+            Login.auth(
+                {},
+                {
+                    "username": username,
+                    "password": password
+                }
+            ).$promise.then((data) => {
+                if (data.data.token) {
+                    localStorageService.set(ENV.localStorageName, data.data.token)
+                    deferred.resolve(true)
+                    loggedIn = true
+                } else {
+                    deferred.reject(false)
+                    loggedIn = false
+                }
+            }).catch(() => {
+                deferred.reject(false)
+                loggedIn = false
+            })
+
+            return deferred.promise
+        },
+        logout: () => {
+            localStorageService.remove(ENV.localStorageName)
             loggedIn = false
         },
-        checkLogin: function() {
-            if (loggedIn) {
-                return true
-            } else {
-                let encrypted = localStorageService.get(localStorageVarName)
-                if (encrypted !== null) {
-                    let existingAdminPassword = CryptoJS.AES.decrypt(encrypted, ENV.loginPassphrase).toString(CryptoJS.enc.Utf8)
-
-                    if (existingAdminPassword === ENV.adminPassword) {
-                        loggedIn = true
-                        return true
-                    }
+        checkLogin: () => {
+            let token = localStorageService.get(ENV.localStorageName)
+            let deferred = $q.defer()
+            Verify.auth(
+                {},
+                {
+                    "token": token
                 }
-            }
-            return false
+            ).$promise.then(() => {
+                deferred.resolve(true)
+                loggedIn = true
+            }).catch(() => {
+                deferred.reject(false)
+                loggedIn = false
+            })
+
+            return deferred.promise
         }
     }
 }

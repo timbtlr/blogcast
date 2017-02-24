@@ -1,65 +1,68 @@
-<div ng-show="showMessage">
-    {{ submitMessage }}
-</div>
+
+<div ng-show="loggedIn"">
+    <div ng-show="showMessage">
+        {{ submitMessage }}
+    </div>
 
 
-<form novalidate>
-    <div class="dropdown" style="margin: 10px 0 10px 0;">
-        <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
-            {{ dropdownText }}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li ng-click="writeNewPost()">
-                <a href="#">Create New post</a>
-            </li>
-            <li class="divider"></li>
-            <li ng-repeat="item in postList" ng-click="editPost(item)">
-                <a href="#">
-                    {{item.title}}
-                    <span ng-hide="!item.is_draft" style="color: red"><em> DRAFT</em></span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" ng-model="postTitle">
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" ng-model="postDescription">
-    </div>
-    <div class="form-group">
-        <label for="author">Author</label>
-        <input type="text" class="form-control" id="author" ng-model="postAuthor">
-    </div>
-
-    <div class="form-group">
-        <label for="author">Category</label>
-        <br/>
-        <div class="btn-group" ng-model="postCategory">
-          <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Technology' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Technology')">Technology</button>
-          <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Gaming' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Gaming')">Gaming</button>
-          <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Variety' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Variety')">Variety</button>
+    <form novalidate>
+        <div class="dropdown" style="margin: 10px 0 10px 0;">
+            <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
+                {{ dropdownText }}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-click="writeNewPost()">
+                    <a href="#">Create New post</a>
+                </li>
+                <li class="divider"></li>
+                <li ng-repeat="item in postList" ng-click="editPost(item)">
+                    <a href="#">
+                        {{item.title}}
+                        <span ng-hide="!item.is_draft" style="color: red"><em> DRAFT</em></span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" ng-model="postTitle">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" ng-model="postDescription">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" id="author" ng-model="postAuthor">
+        </div>
 
-    <hr/>
+        <div class="form-group">
+            <label for="author">Category</label>
+            <br/>
+            <div class="btn-group" ng-model="postCategory">
+              <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Technology' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Technology')">Technology</button>
+              <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Gaming' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Gaming')">Gaming</button>
+              <button type="button" class="btn btn-xs btn-default" ng-style="postCategory == 'Variety' ? {'color': 'white', 'background-color': '#007aa7'} : {'color': 'black'}" ng-click="changeCategory('Variety')">Variety</button>
+            </div>
+        </div>
 
-    <wysiwyg-edit content="blogText"></wysiwyg-edit>
+        <hr/>
 
-    <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
-        Publish Post
-    </button>
-    
-    <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-warning" ng-click="submitDraft()">
-        Save as Draft
-    </button>
+        <wysiwyg-edit content="blogText"></wysiwyg-edit>
 
-    <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" data-toggle="modal" data-target="#deletePostModal">
-        Delete Post
-    </button>
-</form>
+        <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
+            Publish Post
+        </button>
+        
+        <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-warning" ng-click="submitDraft()">
+            Save as Draft
+        </button>
 
-<div ng-include="'templates/blog/templates/deletePostModal.html'"></div>
+        <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" data-toggle="modal" data-target="#deletePostModal">
+            Delete Post
+        </button>
+    </form>
+
+    <div ng-include="'templates/blog/templates/deletePostModal.html'"></div>
+</div>

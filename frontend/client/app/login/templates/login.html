@@ -2,13 +2,16 @@
     <div style="height: 1em;">
         {{ errorState }}
     </div>
-    <form novalidate style="margin-top: 10px">
+    <form novalidate style="margin-top: 10px" ng-submit="login(username, password)">
         <div class="form-group">
-            <label for="password">Admin Password</label>
+            <label for="username">Username</label>
+            <input class="form-control" id="username" ng-model="username">
+
+            <label for="password">Password</label>
             <input type="password" class="form-control" id="password" ng-model="password">
         </div>
 
-        <button type="button" class="btn btn-primary btn-md" ng-click="login(password)">
+        <button type="button" class="btn btn-primary btn-md" ng-click="login(username, password)">
             Login
         </button>
     </form>

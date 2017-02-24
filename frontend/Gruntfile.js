@@ -34,6 +34,7 @@ module.exports = function(grunt) {
                         awsSecretKey: process.env.AWS_SECRET_KEY,
                         awsBucketName: process.env.AWS_BUCKET_NAME,
                         loginPassphrase: process.env.LOGIN_PASSPHRASE,
+                        localStorageName: process.env.LOCAL_STORAGE_NAME,
                     }
                 }
             }

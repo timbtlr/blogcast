@@ -1,10 +1,10 @@
 module.exports = ($scope, $state, ENV, LoginManager) => {
-    $scope.login = function (password) {
-        const result = LoginManager.login(password)
-        if (result) {
+    $scope.login = function (username, password) {
+        LoginManager.login(username, password).then(() => {
             $state.go("podcast")
-        } else {
-            $scope.errorState = "Incorrect password"
-        }
+        }).catch(() => {
+            $scope.errorState = "This username/password combination could not be logged in."
+        })
+
     }
 }

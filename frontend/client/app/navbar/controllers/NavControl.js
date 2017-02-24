@@ -10,9 +10,10 @@ module.exports = ($scope, $state, LoginManager) => {
 
     $scope.$watch(
         function() {
-            return LoginManager.checkLogin()
+            return LoginManager.loggedIn()
         },
         function(newValue) {
+            console.log(newValue)
             $scope.loggedIn = newValue
         }
     )

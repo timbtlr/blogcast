@@ -1,5 +1,11 @@
-module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, LoginManager, RedirectService) => {
-    RedirectService.checkLoggedIn()
+module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, LoginManager) => {
+    $scope.loggedIn = false
+
+    LoginManager.checkLogin().then(() => {
+        $scope.loggedIn = true
+    }).catch(() => {
+        $state.go("login")
+    })
 
     $scope.uploading = false
 
