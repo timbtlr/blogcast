@@ -6,6 +6,8 @@ class UserSerializer(serializers.Serializer):
     is_staff = serializers.BooleanField()
     is_superuser = serializers.BooleanField()
     is_active = serializers.BooleanField()
+    first_name = serializers.CharField(max_length=100)
+    last_name = serializers.CharField(max_length=100)
 
 
 

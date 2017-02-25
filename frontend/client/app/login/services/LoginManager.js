@@ -1,12 +1,20 @@
 module.exports = ($q, ENV, localStorageService, Login, Verify) => {
-    let loggedIn = false
-    let adminUser = false
+    let user = undefined
     return {
+        user: () => {
+            return user
+        },
         loggedIn: () => {
-            return loggedIn
+            if (user) {
+                return user.is_active
+            }
+            return false
         },
         adminUser: () => {
-            return adminUser
+            if (user) {
+                return user.is_superuser
+            }
+            return false
         },
         login: (username, password) => {
             let deferred = $q.defer()
@@ -20,25 +28,21 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
                 if (data.data.token) {
                     localStorageService.set(ENV.localStorageName, data.data.token)
                     deferred.resolve(true)
-                    loggedIn = true
-                    adminUser = data.data.user.is_superuser
+                    user = data.data.user
                 } else {
                     deferred.reject(false)
-                    loggedIn = false
-                    adminUser = false
+                    user = undefined
                 }
             }).catch(() => {
                 deferred.reject(false)
-                loggedIn = false
-                adminUser = false
+                user = undefined
             })
 
             return deferred.promise
         },
         logout: () => {
             localStorageService.remove(ENV.localStorageName)
-            loggedIn = false
-            adminUser = false
+            user = undefined
         },
         checkLogin: () => {
             let token = localStorageService.get(ENV.localStorageName)
@@ -50,13 +54,10 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
                 }
             ).$promise.then((data) => {
                 deferred.resolve(true)
-                adminUser = data.data.user.is_superuser
-                loggedIn = true
-
+                user = data.data.user
             }).catch(() => {
                 deferred.reject(false)
-                adminUser = false
-                loggedIn = false
+                user = undefined
             })
 
             return deferred.promise

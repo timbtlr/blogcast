@@ -79,7 +79,7 @@ a[id^="btn"]::-moz-focus-inner { border:0; padding:0; }
 .blogList li:hover { background-color:#eeeeee; color: #007aa7;}
 .blogList li a:hover { background-color:#eeeeee; color: #007aa7;}
 .blogItem { position:relative; height: 200px;}
-.blogItemImage { left: 10px; height: 200px;}
+.blogItemImage { left: 10px; height: 200px; width: 400px}
 .blogItemImage:hover {cursor: pointer;}
 .blogTitle { width: 450px; font-size: 1.8em; text-align: right;}
 .blogDescription { width: 450px; text-align: right;}

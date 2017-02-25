@@ -1,18 +1,28 @@
-module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
+module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUploadService) => {
     $scope.view = "editor"
     $scope.editing = false
     $scope.currentEditItem = undefined
     $scope.showMessage = false
+    $scope.blogImage = undefined
 
     $scope.loggedIn = false
     $scope.adminUser = false
+    $scope.user = undefined
 
     LoginManager.checkLogin().then(() => {
-        $scope.loggedIn = true
+        $scope.loggedIn = LoginManager.adminUser()
         $scope.adminUser = LoginManager.adminUser()
+        $scope.user = LoginManager.user()
     }).catch(() => {
         $state.go("login")
     })
+
+    $scope.userName = () => {
+        if ($scope.user !== undefined) {
+            return $scope.user.first_name + " " + $scope.user.last_name
+        }
+        return ""
+    }
 
     let setDefaultForm = () => {
         $scope.postTitle = ""
@@ -74,6 +84,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
             $scope.currentEditItem = item
             $scope.postCategory = item.category
             $scope.editing = true
+            $scope.blogImage = item.image
             $scope.dropdownText = "Editing:  '" + item.title + "'"
         }
     }
@@ -100,7 +111,8 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
                     "author": $scope.postAuthor,
                     "text": $scope.blogText,
                     "category": $scope.postCategory,
-                    "is_draft": $scope.draft
+                    "is_draft": $scope.draft,
+                    "image": $scope.blogImage
                 }
             )
 
@@ -111,7 +123,8 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
                 "author": $scope.postAuthor,
                 "text": $scope.blogText,
                 "category": $scope.postCategory,
-                "is_draft": $scope.draft
+                "is_draft": $scope.draft,
+                "image": $scope.blogImage
             })
 
             $scope.editing = true
@@ -138,6 +151,33 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
 
     $scope.changeCategory = (type) => {
         $scope.postCategory = type
+    }
+
+    $scope.readyForUpload = function() {
+        return $scope.file
+    }
+
+    $scope.selectFile = function (file) {
+        $scope.file = file
+        $scope.uploading = false
+    }
+
+    $scope.uploadFile = function () {
+        if ($scope.file) {
+            $scope.uploading = true
+            EpisodeUploadService.Upload($scope.file).then(() => {
+                // Mark as success
+                $scope.file.Success = true
+                $scope.uploading = false
+                $scope.blogImage = "https://s3.amazonaws.com/" + ENV.awsBucketName + "/" + $scope.file.name
+            }, (error) => {
+                // Mark the error
+                $scope.Error = error
+            }, (progress) => {
+                // Write the progress as a percentage
+                $scope.file.Progress = (progress.loaded / progress.total) * 100
+            })
+        }
     }
 
     $scope.uploading = false

@@ -15,7 +15,7 @@
         <a ng-href="articles/{{item.id}}" ng-repeat="item in postList">
           <li style="border-bottom: solid 1px #F1F1F1"  ng-style="{border: adminUser && item.is_draft ? '4px orange solid' : 'none' }">
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="margin-left: 0; margin-right: 0">
               <div class="col-xs-6">
                 <img class="blogItemImage" ng-src="{{item.image}}" />
               </div>
