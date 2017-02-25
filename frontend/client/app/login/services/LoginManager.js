@@ -1,8 +1,12 @@
 module.exports = ($q, ENV, localStorageService, Login, Verify) => {
     let loggedIn = false
+    let adminUser = false
     return {
         loggedIn: () => {
             return loggedIn
+        },
+        adminUser: () => {
+            return adminUser
         },
         login: (username, password) => {
             let deferred = $q.defer()
@@ -17,13 +21,16 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
                     localStorageService.set(ENV.localStorageName, data.data.token)
                     deferred.resolve(true)
                     loggedIn = true
+                    adminUser = data.data.user.is_superuser
                 } else {
                     deferred.reject(false)
                     loggedIn = false
+                    adminUser = false
                 }
             }).catch(() => {
                 deferred.reject(false)
                 loggedIn = false
+                adminUser = false
             })
 
             return deferred.promise
@@ -31,6 +38,7 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
         logout: () => {
             localStorageService.remove(ENV.localStorageName)
             loggedIn = false
+            adminUser = false
         },
         checkLogin: () => {
             let token = localStorageService.get(ENV.localStorageName)
@@ -40,11 +48,14 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
                 {
                     "token": token
                 }
-            ).$promise.then(() => {
+            ).$promise.then((data) => {
                 deferred.resolve(true)
+                adminUser = data.data.user.is_superuser
                 loggedIn = true
+
             }).catch(() => {
                 deferred.reject(false)
+                adminUser = false
                 loggedIn = false
             })
 

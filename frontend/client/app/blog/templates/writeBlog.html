@@ -51,7 +51,7 @@
 
         <wysiwyg-edit content="blogText"></wysiwyg-edit>
 
-        <button ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
+        <button ng-if="adminUser" ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
             Publish Post
         </button>
         
@@ -59,7 +59,7 @@
             Save as Draft
         </button>
 
-        <button ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" data-toggle="modal" data-target="#deletePostModal">
+        <button ng-if="adminUser" ng-hide="!editing" type="button" class="btn btn-primary btn-md btn-danger" data-toggle="modal" data-target="#deletePostModal">
             Delete Post
         </button>
     </form>

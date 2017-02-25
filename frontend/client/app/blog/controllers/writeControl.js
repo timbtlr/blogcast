@@ -2,11 +2,14 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage) => {
     $scope.view = "editor"
     $scope.editing = false
     $scope.currentEditItem = undefined
-    $scope.loggedIn = false
     $scope.showMessage = false
+
+    $scope.loggedIn = false
+    $scope.adminUser = false
 
     LoginManager.checkLogin().then(() => {
         $scope.loggedIn = true
+        $scope.adminUser = LoginManager.adminUser()
     }).catch(() => {
         $state.go("login")
     })
