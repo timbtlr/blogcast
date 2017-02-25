@@ -1,4 +1,10 @@
-module.exports = ($scope, Post) => {
+module.exports = ($scope, Post, LoginManager) => {
+    $scope.adminUser = false
+    LoginManager.checkLogin().then(() => {
+        $scope.adminUser = LoginManager.adminUser()
+        $scope.filterPosts()
+    })
+
     $scope.filters = ["Technology", "Gaming", "Variety"]
     $scope.rawData = []
 
@@ -25,7 +31,7 @@ module.exports = ($scope, Post) => {
 
     $scope.filterPosts = () => {
         $scope.postList = _.filter($scope.rawData, (post) => {
-            return post.is_draft === false && _.contains($scope.filters, post.category)
+            return (post.is_draft === false || $scope.adminUser) && _.contains($scope.filters, post.category)
         })
     }
 

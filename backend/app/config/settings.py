@@ -39,10 +39,8 @@ REST_FRAMEWORK = {
     'TIME_FORMAT': None
 }
 
-
-
-
 JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1)
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
     'JWT_RESPONSE_PAYLOAD_HANDLER': "app.auth.serializers.custom_jwt_response_payload_handler"
 }

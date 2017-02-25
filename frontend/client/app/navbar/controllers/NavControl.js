@@ -13,7 +13,6 @@ module.exports = ($scope, $state, LoginManager) => {
             return LoginManager.loggedIn()
         },
         function(newValue) {
-            console.log(newValue)
             $scope.loggedIn = newValue
         }
     )
