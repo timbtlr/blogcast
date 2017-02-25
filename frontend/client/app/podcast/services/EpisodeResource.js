@@ -1,4 +1,4 @@
-module.exports = ($resource, ENV) => {
+module.exports = ($resource, ENV, localStorageService) => {
     return $resource(
         ENV.blogcastApiUrl.concat("episodes/:id/"),
         {},
@@ -15,14 +15,14 @@ module.exports = ($resource, ENV) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": ENV.blogcastApiKey
+                    "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
                 }
             },
             "delete": {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": ENV.blogcastApiKey
+                    "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
                 }
             }
         },

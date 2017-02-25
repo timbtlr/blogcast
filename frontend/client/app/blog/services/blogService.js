@@ -1,9 +1,4 @@
 module.exports = ($resource, ENV, localStorageService) => {
-    let headerDict = {
-        "Content-Type": "application/json",
-        "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
-    }
-
     return $resource(
         ENV.blogcastApiUrl.concat("blogs/:id/"),
         {},
@@ -11,23 +6,38 @@ module.exports = ($resource, ENV, localStorageService) => {
             "query": {
                 method: "GET",
                 isArray: false,
-                headers: headerDict
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": ENV.blogcastApiKey
+                }
             },
             "get": {
                 method: "GET",
-                headers: headerDict
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": ENV.blogcastApiKey
+                }
             },
             "create": {
                 method: "POST",
-                headers: headerDict
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
+                }
             },
             "update": {
                 method: "PUT",
-                headers: headerDict
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
+                }
             },
             "delete": {
                 method: "DELETE",
-                headers: headerDict
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "JWT " + localStorageService.get(ENV.localStorageName)
+                }
             }
         },
         {
