@@ -10,7 +10,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
     $scope.user = undefined
 
     LoginManager.checkLogin().then(() => {
-        $scope.loggedIn = LoginManager.adminUser()
+        $scope.loggedIn = LoginManager.loggedIn()
         $scope.adminUser = LoginManager.adminUser()
         $scope.user = LoginManager.user()
     }).catch(() => {
@@ -144,6 +144,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
         )
         setDefaultForm()
         $scope.currentEditItem = undefined
+        $scope.blogImage = undefined
         $scope.editing = false
         $scope.queryForPosts()
         $scope.writeNewPost()
@@ -160,6 +161,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
     $scope.selectFile = function (file) {
         $scope.file = file
         $scope.uploading = false
+        $scope.uploadFile()
     }
 
     $scope.uploadFile = function () {
