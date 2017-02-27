@@ -166,3 +166,39 @@ a[id^="btn"]::-moz-focus-inner { border:0; padding:0; }
     cursor: pointer;
     color: #007aa7;
 }
+
+.article h1 { 
+    font-size: 42px !important; 
+}
+
+
+.article h3 { 
+    color: #00AEEF !important;
+    text-align: center !important;
+ }
+
+.article h3 span { 
+    color: #00AEEF !important;
+    font-weight: bold !important; 
+    font-size: 30px !important; 
+ }
+
+.article span {    
+    font-family: Arial !important;
+    font-weight: normal !important;
+    font-size: 18px !important;
+}
+
+
+.article table {    
+    border: 1px solid #E0E0E0  !important;
+    width: 600px !important;
+    margin: auto !important;
+    text-align: center !important;
+}
+
+.article table span {    
+    font-family: Arial !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+}
