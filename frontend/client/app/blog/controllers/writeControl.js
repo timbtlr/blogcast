@@ -182,8 +182,48 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
         }
     }
 
+    $scope.selectBodyFile = function (file) {
+        $scope.file = file
+        $scope.uploading = false
+        $scope.uploadBodyFile()
+    }
+
+    $scope.uploadBodyFile = function () {
+        if ($scope.file) {
+            $scope.uploading = true
+            EpisodeUploadService.Upload($scope.file).then(() => {
+                // Mark as success
+                $scope.file.Success = true
+                $scope.uploading = false
+                $scope.blogText += "<img src='https://s3.amazonaws.com/" + ENV.awsBucketName + "/" + $scope.file.name + "' style='width: 200px'/>"
+            }, (error) => {
+                // Mark the error
+                $scope.Error = error
+            }, (progress) => {
+                // Write the progress as a percentage
+                $scope.file.Progress = (progress.loaded / progress.total) * 100
+            })
+        }
+    }
+
     $scope.uploading = false
     $scope.queryForPosts()
     setDefaultForm()
     $scope.writeNewPost()
+
+    $scope.api = {
+        scope: $scope,
+        editorConfig: {
+            sanitize: false,
+            toolbar: [
+                { name: "basicStyling", items: ["bold", "italic", "underline", "strikethrough", "subscript", "superscript", "-", "leftAlign", "centerAlign", "rightAlign", "blockJustify", "-"] },
+                { name: "paragraph", items: ["orderedList", "unorderedList", "outdent", "indent", "-"] },
+                { name: "doers", items: ["removeFormatting", "undo", "redo", "-"] },
+                { name: "colors", items: ["fontColor", "backgroundColor", "-"] },
+                { name: "links", items: ["hr", "symbols", "link", "unlink", "-"] },
+                { name: "tools", items: ["print", "-"] },
+                { name: "styling", items: ["font", "size", "format"] }
+            ]
+        }
+    }
 }

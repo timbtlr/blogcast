@@ -87,7 +87,11 @@
 
         <hr/>
 
-        <wysiwyg-edit content="blogText"></wysiwyg-edit>
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#uploadImageModal">
+            Upload Image
+        </button>
+
+        <wysiwyg-edit content="blogText" api="api"></wysiwyg-edit>
 
         <button ng-if="adminUser" ng-disabled="!readyToSave()" type="button" class="btn btn-md btn-success" ng-click="submitPost()">
             Publish Post
@@ -103,4 +107,5 @@
     </form>
 
     <div ng-include="'templates/blog/templates/deletePostModal.html'"></div>
+    <div ng-include="'templates/blog/templates/uploadImageModal.html'"></div>
 </div>
