@@ -33,7 +33,11 @@
     "ng-file-upload": "12.2.13",
     "aws-sdk-js": "2.1.48",
     "ngWYSIWYG": "0.6.2",
-    "jquery": "latest"
+    "jquery": "latest",
+    "ngRedux": "git://github.com/angular-redux/ng-redux.git#03bc0b63d4",
+    "redux": "https://npmcdn.com/redux@3.6.0/dist/redux.min.js",
+    "redux-thunk": "https://npmcdn.com/redux-thunk@2.1.0/dist/redux-thunk.min.js",
+    "toastr": "2.1.2"
   },
   "resolutions": {
     "angular": "^1.5.7",

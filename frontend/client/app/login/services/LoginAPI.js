@@ -1,4 +1,4 @@
-module.exports = ($q, ENV, localStorageService, Login, Verify) => {
+module.exports = ($ngRedux, $q, ENV, localStorageService, constants, LoginResource, VerifyResource) => {
     let user = undefined
     return {
         user: () => {
@@ -17,8 +17,11 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
             return false
         },
         login: (username, password) => {
+            $ngRedux.dispatch({
+                type: constants.LOGIN
+            })
             let deferred = $q.defer()
-            Login.auth(
+            LoginResource.auth(
                 {},
                 {
                     "username": username,
@@ -29,13 +32,26 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
                     localStorageService.set(ENV.localStorageName, data.data.token)
                     deferred.resolve(true)
                     user = data.data.user
+
+                    $ngRedux.dispatch({
+                        type: constants.LOGIN_SUCCESS,
+                        user: data.data.user
+                    })
                 } else {
                     deferred.reject(false)
                     user = undefined
+                    $ngRedux.dispatch({
+                        type: constants.LOGIN_ERROR,
+                        message: "No token was provided with the logged-in user."
+                    })
                 }
             }).catch(() => {
                 deferred.reject(false)
                 user = undefined
+                $ngRedux.dispatch({
+                    type: constants.LOGIN_ERROR,
+                    message: "This username/password combination could not be logged in."
+                })
             })
 
             return deferred.promise
@@ -43,11 +59,17 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
         logout: () => {
             localStorageService.remove(ENV.localStorageName)
             user = undefined
+            $ngRedux.dispatch({
+                type: constants.LOGOUT
+            })
         },
         checkLogin: () => {
+            $ngRedux.dispatch({
+                type: constants.VERIFY
+            })
             let token = localStorageService.get(ENV.localStorageName)
             let deferred = $q.defer()
-            Verify.auth(
+            VerifyResource.auth(
                 {},
                 {
                     "token": token
@@ -55,9 +77,16 @@ module.exports = ($q, ENV, localStorageService, Login, Verify) => {
             ).$promise.then((data) => {
                 deferred.resolve(true)
                 user = data.data.user
+                $ngRedux.dispatch({
+                    type: constants.VERIFY_SUCCESS,
+                    user: data.data.user
+                })
             }).catch(() => {
                 deferred.reject(false)
                 user = undefined
+                $ngRedux.dispatch({
+                    type: constants.VERIFY_ERROR
+                })
             })
 
             return deferred.promise

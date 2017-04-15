@@ -1,8 +1,8 @@
-module.exports = ($scope, $state, LoginManager) => {
-    $scope.loggedIn = LoginManager.checkLogin()
+module.exports = ($scope, $state, LoginAPI) => {
+    $scope.loggedIn = LoginAPI.checkLogin()
 
     $scope.logout = function() {
-        LoginManager.logout()
+        LoginAPI.logout()
         $scope.loggedIn = false
         // Reload the current state to ensure login-only states are left
         $state.go($state.current.name, {}, { reload: true })
@@ -10,7 +10,7 @@ module.exports = ($scope, $state, LoginManager) => {
 
     $scope.$watch(
         function() {
-            return LoginManager.loggedIn()
+            return LoginAPI.loggedIn()
         },
         function(newValue) {
             $scope.loggedIn = newValue

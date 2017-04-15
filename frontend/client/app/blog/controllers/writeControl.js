@@ -1,4 +1,4 @@
-module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUploadService) => {
+module.exports = ($scope, $state, ENV, LoginAPI, Post, BlogImage, EpisodeUploadService) => {
     $scope.view = "editor"
     $scope.editing = false
     $scope.currentEditItem = undefined
@@ -9,10 +9,11 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
     $scope.adminUser = false
     $scope.user = undefined
 
-    LoginManager.checkLogin().then(() => {
-        $scope.loggedIn = LoginManager.loggedIn()
-        $scope.adminUser = LoginManager.adminUser()
-        $scope.user = LoginManager.user()
+    LoginAPI.checkLogin().then(() => {
+        $scope.loggedIn = LoginAPI.loggedIn()
+        $scope.adminUser = LoginAPI.adminUser()
+        $scope.user = LoginAPI.user()
+        $scope.author = $scope.userName()
     }).catch(() => {
         $state.go("login")
     })
@@ -27,8 +28,8 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
     let setDefaultForm = () => {
         $scope.postTitle = ""
         $scope.postDescription = ""
-        $scope.postAuthor = ""
         $scope.blogText = ""
+        $scope.author = $scope.userName()
     }
 
     let shouldLeave = () => {
@@ -50,7 +51,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
     }
 
     $scope.readyToSave = () => {
-        return $scope.postAuthor !== undefined && $scope.postTitle !== undefined && $scope.postDescription !== undefined && $scope.blogText !== ""
+        return $scope.userName() !== undefined && $scope.postTitle !== undefined && $scope.postDescription !== undefined && $scope.blogText !== ""
     }
 
     $scope.writeNewPost = () => {
@@ -79,12 +80,12 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
         if (shouldLeave()) {
             $scope.postTitle = item.title
             $scope.postDescription = item.description
-            $scope.postAuthor = item.author
             $scope.blogText = item.text
             $scope.currentEditItem = item
             $scope.postCategory = item.category
             $scope.editing = true
             $scope.blogImage = item.image
+            $scope.author = item.author
             $scope.dropdownText = "Editing:  '" + item.title + "'"
         }
     }
@@ -108,7 +109,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
                 {
                     "title": $scope.postTitle,
                     "description": $scope.postDescription,
-                    "author": $scope.postAuthor,
+                    "author": $scope.author,
                     "text": $scope.blogText,
                     "category": $scope.postCategory,
                     "is_draft": $scope.draft,
@@ -120,7 +121,7 @@ module.exports = ($scope, $state, ENV, LoginManager, Post, BlogImage, EpisodeUpl
             Post.create({
                 "title": $scope.postTitle,
                 "description": $scope.postDescription,
-                "author": $scope.postAuthor,
+                "author": $scope.author,
                 "text": $scope.blogText,
                 "category": $scope.postCategory,
                 "is_draft": $scope.draft,

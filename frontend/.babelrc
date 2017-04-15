@@ -1,3 +1,14 @@
 {
-	"presets": ["es2015"]
+	"presets": ["es2015"],
+	"plugins": [
+      "syntax-object-rest-spread",
+      "transform-object-rest-spread",
+      ["module-alias",
+          [
+            {
+                "src": "./client/app", "expose": "app"
+            }
+          ]
+      ]
+  ]
 }

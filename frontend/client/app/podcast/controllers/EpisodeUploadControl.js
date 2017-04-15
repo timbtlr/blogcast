@@ -1,10 +1,10 @@
-module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, LoginManager) => {
+module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, LoginAPI) => {
     $scope.loggedIn = false
     $scope.adminUser = false
 
-    LoginManager.checkLogin().then(() => {
+    LoginAPI.checkLogin().then(() => {
         $scope.loggedIn = true
-        $scope.adminUser = LoginManager.adminUser()
+        $scope.adminUser = LoginAPI.adminUser()
     }).catch(() => {
         $state.go("login")
     })

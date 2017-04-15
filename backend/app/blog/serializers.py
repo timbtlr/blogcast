@@ -8,12 +8,10 @@ class BlogSerializer(serializers.ModelSerializer):
     uploaded_time = serializers.DateTimeField(read_only=True)
     id = serializers.CharField(read_only=True)
 
-    def validate(self, data):
-        """
-        Check that the start is before the stop.
-        """
-        data['id'] = slugify(data['title'])
-        return data
+    def create(self, validated_data):
+        Blog.objects.get()
+        validated_data['id'] = slugify(validated_data['title'])
+        return super(BlogSerializer, self).create(validated_data)
 
     class Meta:
         model = Blog

@@ -1,9 +1,9 @@
-module.exports = ($state, LoginManager) => {
+module.exports = ($state, LoginAPI) => {
     return {
         checkLoggedIn: function() {
             let loggedIn
 
-            LoginManager.checkLogin().$promise.then(() => {
+            LoginAPI.checkLogin().$promise.then(() => {
                 loggedIn = true
             }).catch(() => {
                 loggedIn = false

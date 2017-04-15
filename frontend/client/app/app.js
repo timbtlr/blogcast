@@ -5,6 +5,7 @@ let blogcastInstalledApps = [
     require("./navbar"),
     require("./login"),
     require("./common"),
+    require("./config"),
     require("./podcast"),
     require("./blog"),
     require("./audio").sharedAudioService,

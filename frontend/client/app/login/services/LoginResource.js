@@ -1,4 +1,4 @@
-module.exports = ($resource, ENV, localStorageService) => {
+module.exports = ($resource, ENV) => {
     let headerDict = {
         "Content-Type": "application/json"
     }

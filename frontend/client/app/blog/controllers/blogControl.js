@@ -1,18 +1,22 @@
-module.exports = ($scope, Post, LoginManager) => {
+module.exports = ($scope, ArticleAPI, LoginAPI) => {
     $scope.adminUser = false
-    LoginManager.checkLogin().then(() => {
-        $scope.adminUser = LoginManager.adminUser()
+    LoginAPI.checkLogin().then(() => {
+        $scope.adminUser = LoginAPI.adminUser()
         $scope.filterPosts()
     })
 
     $scope.filters = ["Technology", "Gaming", "Variety"]
     $scope.rawData = []
 
-    Post.query().$promise.then((data) => {
-        $scope.rawData = data.data
-        $scope.filterPosts()
-        $scope.currentPost = $scope.postList[0]
-    })
+    console.log("GETTING THEM")
+    const api = new ArticleAPI()
+    api.list()
+
+    // .$promise.then((data) => {
+    //     $scope.rawData = data.data
+    //     $scope.filterPosts()
+    //     $scope.currentPost = $scope.postList[0]
+    // })
     $scope.setPost = (item) => {
         $scope.currentPost = item
     }
