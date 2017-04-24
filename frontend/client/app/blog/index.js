@@ -8,13 +8,8 @@ import EditBlog from "./components/smart/EditBlog"
 
 module.exports = angular
     .module("blog", ["ui.router"])
-    .controller("BlogController", require("./controllers/blogControl"))
-    .controller("ArticleController", require("./controllers/articleControl"))
-    .controller("WriteController", require("./controllers/writeControl"))
     .service("ArticleResource", require("./services/ArticleResource"))
     .service("ArticleAPI", require("./services/ArticleAPI"))
-    .service("BlogImage", require("./services/blogImage"))
-
     .service("ArticleActions", require("./actions/ArticleActions"))
     .service("BlogListActions", require("./actions/BlogListActions"))
     .service("WriteBlogActions", require("./actions/WriteBlogActions"))
