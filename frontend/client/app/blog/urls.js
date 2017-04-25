@@ -35,7 +35,7 @@ module.exports = ($stateProvider) => {
             templateUrl: "templates/blog/components/BlogWrite.html",
             resolve: {
                 verify: ($stateParams, $state, LoginAPI) => {
-                    LoginAPI.checkLogin().catch(() => $state.go("blog"))
+                    LoginAPI.checkLogin().catch(() => $state.go("app.blog"))
                 },
                 articles: ($stateParams, ArticleAPI) => {
                     const api = new ArticleAPI()

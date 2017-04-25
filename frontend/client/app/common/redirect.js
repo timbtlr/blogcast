@@ -7,7 +7,7 @@ module.exports = ($state, LoginAPI) => {
                 loggedIn = true
             }).catch(() => {
                 loggedIn = false
-                $state.go("podcast")
+                $state.go("app.podcast")
             })
         }
     }

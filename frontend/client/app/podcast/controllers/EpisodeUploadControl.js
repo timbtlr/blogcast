@@ -6,7 +6,7 @@ module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, Lo
         $scope.loggedIn = true
         $scope.adminUser = LoginAPI.adminUser()
     }).catch(() => {
-        $state.go("login")
+        $state.go("app.login")
     })
 
     $scope.uploading = false
@@ -55,7 +55,7 @@ module.exports = ($scope, $state, ENV, Episode, Upload, EpisodeUploadService, Lo
             }
         )
         setTimeout(function(){
-            $state.go("upload", {}, {"reload": true})
+            $state.go("app.upload", {}, {"reload": true})
         }, 1000)
     }
 

@@ -3,7 +3,7 @@ module.exports = ($ngRedux, $state, constants, LoginAPI) => {
         login: (username, password) => {
             LoginAPI.login(username, password).then(() => {
                 toastr.info(`${username} has been logged in`)
-                $state.go("podcast")
+                $state.go("app.podcast")
             })
         }
     }
