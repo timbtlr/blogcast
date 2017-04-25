@@ -16,13 +16,6 @@ module.exports = ($scope, $sce, $timeout) => {
         })
     }
 
-    $scope.initializeMedia = (item) => {
-        $scope.$evalAsync(() => {
-            $scope.config.sources = [{src: $sce.trustAsResourceUrl(item.source), type: "audio/mpeg"}]
-            $scope.currentlyPlaying = item
-        })
-    }
-
     $scope.onPlayerReady = (API) => {
         $scope.API = API
     }
@@ -36,6 +29,6 @@ module.exports = ($scope, $sce, $timeout) => {
         preload: "none",
         autoHide: false,
         autoHideTime: 3000,
-        autoPlay: false
+        autoPlay: true
     }
 }

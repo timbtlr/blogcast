@@ -8,7 +8,6 @@ let blogcastInstalledApps = [
     require("./config"),
     require("./podcast"),
     require("./blog"),
-    require("./audio").sharedAudioService,
     require("./audio").audioPlayerApp,
     "LocalStorageModule",
     "ui.router",

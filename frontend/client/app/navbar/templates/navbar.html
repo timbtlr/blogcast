@@ -7,11 +7,11 @@
                 <li><img style="height: 50px;" src="images/images/LogoRecolorV2.png"/></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{navactive: stateIs(['podcast'])}"><a ui-sref="podcast">Podcast</a></li>
-		        <li ng-class="{navactive: stateIs(['blog', 'articles'])}"><a ui-sref="blog">Blog</a></li>
-		        <li ng-class="{navactive: stateIs(['write'])}" ng-show="loggedIn"><a ui-sref="write">Edit Blogs</a></li>
-		        <li ng-class="{navactive: stateIs(['upload'])}" ng-show="loggedIn"><a ui-sref="upload">Edit Podcast</a></li>
-		        <li ng-class="{navactive: stateIs(['login'])}" ng-show="!loggedIn"><a ui-sref="login">Login</a></li>
+                <li ng-class="{navactive: stateIs(['app.podcast'])}"><a ui-sref="app.podcast">Podcast</a></li>
+		        <li ng-class="{navactive: stateIs(['app.blog', 'articles'])}"><a ui-sref="app.blog">Blog</a></li>
+		        <li ng-class="{navactive: stateIs(['app.write'])}" ng-show="loggedIn"><a ui-sref="app.write">Edit Blogs</a></li>
+		        <li ng-class="{navactive: stateIs(['app.upload'])}" ng-show="loggedIn"><a ui-sref="app.upload">Edit Podcast</a></li>
+		        <li ng-class="{navactive: stateIs(['app.login'])}" ng-show="!loggedIn"><a ui-sref="app.login">Login</a></li>
 		        <li ng-show="loggedIn" ng-click="logout()"><a>Logout</a></li>
             </ul>
         </div>

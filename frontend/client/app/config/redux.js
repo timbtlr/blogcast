@@ -7,6 +7,8 @@ module.exports.config = ($ngReduxProvider, ENV) => {
         "blogList": require("app/blog/reducers/BlogListReducer"),
         "user": require("app/login/reducers/UserReducer"),
         "login": require("app/login/reducers/LoginReducer"),
+        "player": require("app/audio/reducers/PlayerReducer"),
+        "podcast": require("app/podcast/reducers/PodcastReducer"),
         "write": require("app/blog/reducers/WriteReducer")
     }
     let devTools = []

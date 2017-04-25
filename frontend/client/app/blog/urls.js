@@ -2,7 +2,7 @@ module.exports = ($stateProvider) => {
     "use strict"
 
     $stateProvider
-        .state("blog", {
+        .state("app.blog", {
             url: "/blog",
             title: "Articles",
             templateUrl: "templates/blog/components/BlogArticles.html",
@@ -13,7 +13,7 @@ module.exports = ($stateProvider) => {
                 }
             }
         })
-        .state("article", {
+        .state("app.article", {
             url: "/article/:id",
             title: "Article",
             templateUrl: "templates/blog/components/BlogArticle.html",
@@ -29,7 +29,7 @@ module.exports = ($stateProvider) => {
                 ArticleActions.setCurrentArticle(id)
             }
         })
-        .state("write", {
+        .state("app.write", {
             url: "/write",
             title: "Edit Articles",
             templateUrl: "templates/blog/components/BlogWrite.html",

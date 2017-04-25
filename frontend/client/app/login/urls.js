@@ -2,7 +2,7 @@ module.exports = ($stateProvider) => {
     "use strict"
 
     $stateProvider
-        .state("login", {
+        .state("app.login", {
             url: "/login",
             title: "Admin Login",
             templateUrl: "templates/login/components/Login.html"
