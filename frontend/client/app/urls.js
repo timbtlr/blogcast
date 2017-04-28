@@ -11,11 +11,5 @@ module.exports = ($stateProvider, $urlRouterProvider) => {
         }
     })
 
-    $stateProvider.state("app.upload", {
-        url: "/upload",
-        templateUrl: "templates/podcast/templates/uploadEpisode.html",
-        controller: "EpisodeUploadController"
-    })
-
     $urlRouterProvider.otherwise("/")
 }

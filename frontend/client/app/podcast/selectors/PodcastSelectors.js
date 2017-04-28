@@ -20,3 +20,23 @@ export const formattedEpisodeList = (state) => {
         }
     })
 }
+
+export const formattedEpisodeListForDelete = (state) => {
+    const currentlyPlaying = PlayerSelectors.currentlyPlaying(state)
+    return [
+        {
+            title: "Select an episode to delete"
+        },
+        ...Object.values(episodesById(state)).map((episode) => {
+            let selected = false
+            if (currentlyPlaying) {
+                selected = currentlyPlaying.id === episode.id
+            }
+            return {
+                ...episode,
+                selected,
+                uploaded_time: new Date(episode.uploaded_time).toISOString().substring(0, 10)
+            }
+        })
+    ]
+}

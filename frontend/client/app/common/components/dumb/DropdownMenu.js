@@ -24,6 +24,7 @@ module.exports = {
         </div>
     `,
     bindings: {
+        label: "<",
         options: "<",
         active: "<",
         onClick: "&"

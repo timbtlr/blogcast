@@ -1,28 +1,30 @@
 module.exports = {
     selector: "fileUpload",
     template: `
-        <label for="author">{{ $ctrl.label }}</label>
-        <br/>
+        <div style="margin-top: 10px; margin-bottom: 10px;">
+            <label for="author">{{ $ctrl.label }}</label>
+            <br/>
 
-        <button type="file" ngf-select="$ctrl.select($file)" ngf-multiple="false" class="btn btn-primary btn-xs" >
-            {{ $ctrl.buttonLabel }}
-        </button>
+            <button type="file" ngf-select="$ctrl.select($file)" ngf-multiple="false" class="btn btn-primary btn-xs" >
+                {{ $ctrl.buttonLabel }}
+            </button>
 
-        <div class="row" ng-show="$ctrl.uploading">
-            <div class="col-xs-10">
+            <div class="row" ng-show="$ctrl.uploading">
                 <div class="col-xs-10">
-                    <div>
-                        File:
+                    <div class="col-xs-10">
                         <div>
-                            {{$ctrl.file.name}} {{$ctrl.file.$error}} {{$ctrl.file.$errorParam}}
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$ctrl.file.Progress}}%;">
-                                {{$ctrl.file.Progress | number:0}}%
+                            File:
+                            <div>
+                                {{$ctrl.file.name}} {{$ctrl.file.$error}} {{$ctrl.file.$errorParam}}
                             </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$ctrl.file.Progress}}%;">
+                                    {{$ctrl.file.Progress | number:0}}%
+                                </div>
+                            </div>
+                            <div class="alert alert-info" role="alert" ng-show="$ctrl.file.Progress == 100 && !$ctrl.file.Success">Processing, please wait...</div>
+                            <div class="alert alert-success" role="alert" ng-show="$ctrl.file.Success">Upload Complete!</div>
                         </div>
-                        <div class="alert alert-info" role="alert" ng-show="$ctrl.file.Progress == 100 && !$ctrl.file.Success">Processing, please wait...</div>
-                        <div class="alert alert-success" role="alert" ng-show="$ctrl.file.Success">Upload Complete!</div>
                     </div>
                 </div>
             </div>

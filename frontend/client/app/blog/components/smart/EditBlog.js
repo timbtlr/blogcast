@@ -16,7 +16,7 @@ module.exports = {
                 <blog-header ng-if="$ctrl.header" image="{{ $ctrl.header }}"></blog-header>
                 <hr/>
                 <wysiwyg-edit content="$ctrl.text" api="api"></wysiwyg-edit>
-                <simple-button label="'Publish'" btn-class="'btn-success'" hide="!$ctrl.isAdmin" disable="!$ctrl.canSave()"></simple-button>
+                <simple-button label="'Publish'" btn-class="'btn-success'" hide="!$ctrl.isAdmin" disable="!$ctrl.canSave()" on-click="$ctrl.savePost()"></simple-button>
                 <simple-button label="'Save Draft'" btn-class="'btn-warning'" hide="false" disable="!$ctrl.canSave()" on-click="$ctrl.saveDraft()"></simple-button>
                 <simple-button label="'Delete'" btn-class="'btn-danger'" hide="!$ctrl.isAdmin" disable="!$ctrl.canSave()" data-toggle="modal" data-target="#deletePostModal"></simple-button>
             </form>
