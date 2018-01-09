@@ -28,12 +28,6 @@ module.exports = {
     controller: function($ngRedux, WriteBlogActions) {
         this.actions = WriteBlogActions
 
-        this.title = ""
-        this.description = ""
-        this.author = ""
-        this.header = null
-        this.text = ""
-
         this.isEmpty = (obj) => {
             return lodash.isUndefined(obj) ||
                    lodash.isNull(obj) ||
@@ -51,6 +45,7 @@ module.exports = {
 
         this.setActiveArticle = (item) => {
             if (lodash.isNull(item)) {
+                this.actions.clearActiveArticle()
                 this.title = ""
                 this.description = ""
                 this.author = ""
@@ -94,6 +89,8 @@ module.exports = {
         this.$onDestroy = function() {
             unsubscribe()
         }
+
+        this.setActiveArticle(null)
     }
 }
 

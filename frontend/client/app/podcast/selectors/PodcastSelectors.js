@@ -13,10 +13,12 @@ export const formattedEpisodeList = (state) => {
         if (currentlyPlaying) {
             selected = currentlyPlaying.id === episode.id
         }
+
+        let correctDate = episode.uploaded_time.substring(0, episode.uploaded_time.length-3)
         return {
             ...episode,
             selected,
-            uploaded_time: new Date(episode.uploaded_time).toISOString().substring(0, 10)
+            uploaded_time: new Date(correctDate).toISOString().substring(0, 10)
         }
     })
 }
@@ -32,10 +34,12 @@ export const formattedEpisodeListForDelete = (state) => {
             if (currentlyPlaying) {
                 selected = currentlyPlaying.id === episode.id
             }
+
+            let correctDate = episode.uploaded_time.substring(0, episode.uploaded_time.length-3)
             return {
                 ...episode,
                 selected,
-                uploaded_time: new Date(episode.uploaded_time).toISOString().substring(0, 10)
+                uploaded_time: new Date(correctDate).toISOString().substring(0, 10)
             }
         })
     ]

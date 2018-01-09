@@ -7,3 +7,4 @@ web:
     env_file: .env
     volumes:
         - .:/code
+        - /worker/node_modules

@@ -1,5 +1,11 @@
 module.exports = ($ngRedux, constants, ArticleAPI) => {
     return {
+        clearActiveArticle: () => {
+            $ngRedux.dispatch({
+                type: constants.BLOG_EDIT_SET_ACTIVE_ARTICLE,
+                id: null
+            })
+        },
         setActiveArticle: (id, title) => {
             $ngRedux.dispatch({
                 type: constants.BLOG_EDIT_SET_ACTIVE_ARTICLE,
